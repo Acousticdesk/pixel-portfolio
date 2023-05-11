@@ -1,0 +1,4 @@
+export enum MAP_ENUMS {
+  INITIAL_MAP_POSITION_X = -25,
+  INITIAL_MAP_POSITION_Y = -100,
+}
