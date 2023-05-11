@@ -1,8 +1,10 @@
 import { Canvas } from "./canvas";
 import { Map } from "./map";
 import { Player } from "./player";
+import { MovementController } from "./movement-controller";
 
 function animate() {
+  MovementController.move();
   Map.draw();
   Player.draw();
   window.requestAnimationFrame(animate);
