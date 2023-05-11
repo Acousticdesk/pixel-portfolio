@@ -1,1 +1,3 @@
-console.log('Welcome to Portfolio 2D')
+import { main } from './app';
+
+main();
