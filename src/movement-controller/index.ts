@@ -7,9 +7,9 @@ export class MovementController {
     const velocity = PLAYER_ENUMS.MOVEMENT_VELOCITY;
 
     if (Keyboard.keys.w.pressed) {
-      Map.setImageOffsetY(Map.imageOffsetY - velocity);
-    } else if (Keyboard.keys.s.pressed) {
       Map.setImageOffsetY(Map.imageOffsetY + velocity);
+    } else if (Keyboard.keys.s.pressed) {
+      Map.setImageOffsetY(Map.imageOffsetY - velocity);
     } else if (Keyboard.keys.a.pressed) {
       Map.setImageOffsetX(Map.imageOffsetX + velocity);
     } else if (Keyboard.keys.d.pressed) {
