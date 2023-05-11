@@ -1,8 +1,9 @@
 import { Canvas } from './canvas'
 import { Map } from './map'
+import { Player } from './player'
 
-export function main() {
+export async function main() {
   Canvas.init();
-  Map.setCtx(Canvas.getCtx());
-  Map.init();
+  await Map.init();
+  Player.init();
 }

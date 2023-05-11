@@ -27,4 +27,11 @@ export class Canvas {
     }
     return this.ctx;
   }
+
+  static getCanvas() {
+    if (!this.canvas) {
+      throw new Error('Canvas was never initialized. Please call Canvas.init() first.');
+    }
+    return this.canvas;
+  }
 }
