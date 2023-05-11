@@ -20,4 +20,11 @@ export class Canvas {
     
     return true;
   }
+  
+  static getCtx() {
+    if (!this.ctx) {
+      throw new Error('Canvas was never initialized. Please call Canvas.init() first.');
+    }
+    return this.ctx;
+  }
 }
