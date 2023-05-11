@@ -5,6 +5,7 @@ import { MovementController } from "./movement-controller";
 import { Keyboard } from "./keyboard";
 
 function animate() {
+  Canvas.resetCanvas();
   MovementController.move();
   Map.draw();
   Player.draw();

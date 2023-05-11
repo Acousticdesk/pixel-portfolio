@@ -8,11 +8,14 @@ export class MovementController {
 
     if (Keyboard.keys.w.pressed) {
       Map.setImageOffsetY(Map.imageOffsetY + velocity);
-    } else if (Keyboard.keys.s.pressed) {
+    }
+    if (Keyboard.keys.s.pressed) {
       Map.setImageOffsetY(Map.imageOffsetY - velocity);
-    } else if (Keyboard.keys.a.pressed) {
+    }
+    if (Keyboard.keys.a.pressed) {
       Map.setImageOffsetX(Map.imageOffsetX + velocity);
-    } else if (Keyboard.keys.d.pressed) {
+    }
+    if (Keyboard.keys.d.pressed) {
       Map.setImageOffsetX(Map.imageOffsetX - velocity);
     }
   }

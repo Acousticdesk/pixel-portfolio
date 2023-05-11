@@ -1,0 +1,3 @@
+export enum CANVAS_ENUMS {
+  BACKGROUND_COLOR = "#FFFFFF",
+}
