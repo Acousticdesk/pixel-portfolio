@@ -21,7 +21,7 @@ export async function main() {
 
   Canvas.init();
   await Map.init();
-  Player.init();
+  await Player.init();
   Keyboard.init();
   animate();
 }
