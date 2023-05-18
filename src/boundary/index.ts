@@ -12,7 +12,8 @@ export class Boundary {
   draw() {
     const ctx = Canvas.getCtx();
 
-    ctx.fillStyle = "red";
+    // ctx.fillStyle = "red";
+    ctx.fillStyle = "rgba(255, 0, 0, 0)";
     ctx.fillRect(
       this.x + MAP_ENUMS.INITIAL_MAP_POSITION_X,
       this.y + MAP_ENUMS.INITIAL_MAP_POSITION_Y,

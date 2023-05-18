@@ -2,8 +2,6 @@ import firstOfficeMapImage from "./assets/images/first-office.png";
 import { Canvas } from "../canvas";
 import { MAP_ENUMS } from "./enums";
 
-// TODO akicha: replace static methods with instance methods
-// as the game has more than one map
 export class Map {
   static mapImage: HTMLImageElement;
 
