@@ -1,12 +1,22 @@
 import playerMovementSprite from "./assets/images/Alex_run_16x16.png";
 import { PLAYER_ENUMS } from "./enums";
 import { Canvas } from "../canvas";
+import { PLAYER_CONSTS } from "./consts";
 
 export class Player {
   static x: number;
   static y: number;
   static SINGLE_PRESET_WIDTH: number;
   static playerImage: HTMLImageElement;
+  static movementDirection:
+    | PLAYER_ENUMS.MOVEMENT_DIRECTION_UP
+    | PLAYER_ENUMS.MOVEMENT_DIRECTION_RIGHT
+    | PLAYER_ENUMS.MOVEMENT_DIRECTION_DOWN
+    | PLAYER_ENUMS.MOVEMENT_DIRECTION_LEFT =
+    PLAYER_ENUMS.MOVEMENT_DIRECTION_DOWN;
+  static currentMovementSpriteIndex = 0;
+  static isMoving = false;
+
   static init() {
     const playerImage = new Image();
     playerImage.src = playerMovementSprite;
@@ -32,10 +42,33 @@ export class Player {
     });
   }
 
+  // actual movement of the player on the map is performed by changing the position of the map background
+  // the current method is only being used to animate the player's movement
+  static move() {
+    if (!Player.isMoving) {
+      return;
+    }
+    // we need it to know the range of the sprite where a proper move direction is drawn
+    const spriteIndexRange =
+      PLAYER_CONSTS[`MOVING_${Player.movementDirection}_SPRITE_INDEX`];
+    this.currentMovementSpriteIndex += 1;
+    if (Player.currentMovementSpriteIndex > spriteIndexRange[1]) {
+      Player.currentMovementSpriteIndex = spriteIndexRange[0];
+    }
+  }
+
+  static startMoving() {
+    this.isMoving = true;
+  }
+
+  static stopMoving() {
+    this.isMoving = false;
+  }
+
   static draw() {
     Canvas.getCtx().drawImage(
       Player.playerImage,
-      0,
+      this.currentMovementSpriteIndex * Player.SINGLE_PRESET_WIDTH,
       0,
       Player.SINGLE_PRESET_WIDTH,
       Player.playerImage.height,

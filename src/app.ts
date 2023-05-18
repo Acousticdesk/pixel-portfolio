@@ -13,6 +13,7 @@ function animate() {
   MovementController.move();
   Map.draw();
   BoundaryController.draw();
+  Player.move();
   Player.draw();
   MapForeground.draw();
   window.requestAnimationFrame(animate);
