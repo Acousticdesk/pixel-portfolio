@@ -14,4 +14,8 @@ export class BoundaryController {
       boundary.draw();
     });
   }
+
+  static getBoundaries() {
+    return this.boundaries;
+  }
 }

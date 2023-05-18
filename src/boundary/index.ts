@@ -19,4 +19,20 @@ export class Boundary {
       MAP_ENUMS.TILE_SIZE * (MAP_ENUMS.IMAGE_ZOOM_PERCENTS / 100)
     );
   }
+
+  getX() {
+    return this.x;
+  }
+
+  setX(x: number) {
+    this.x = x;
+  }
+
+  getY() {
+    return this.y;
+  }
+
+  setY(y: number) {
+    this.y = y;
+  }
 }
