@@ -56,7 +56,7 @@ export class Player {
     // we need it to know the range of the sprite where a proper move direction is drawn
     const spriteIndexRange =
       PLAYER_CONSTS[`MOVING_${Player.movementDirection}_SPRITE_INDEX`];
-    this.currentMovementSpriteIndex += 1;
+    Player.currentMovementSpriteIndex += 1;
     if (Player.currentMovementSpriteIndex > spriteIndexRange[1]) {
       Player.currentMovementSpriteIndex = spriteIndexRange[0];
     }
@@ -64,21 +64,26 @@ export class Player {
   }
 
   static startMoving() {
-    this.isMoving = true;
+    Player.isMoving = true;
   }
 
   static stopMoving() {
-    this.isMoving = false;
+    Player.isMoving = false;
   }
 
   static setMovementDirection(direction: typeof Player.movementDirection) {
+    if (Player.movementDirection === direction) {
+      return;
+    }
     Player.movementDirection = direction;
+    const spriteIndexRange = PLAYER_CONSTS[`MOVING_${direction}_SPRITE_INDEX`];
+    Player.currentMovementSpriteIndex = spriteIndexRange[0];
   }
 
   static draw() {
     Canvas.getCtx().drawImage(
       Player.playerImage,
-      this.currentMovementSpriteIndex * Player.SINGLE_PRESET_WIDTH,
+      Player.currentMovementSpriteIndex * Player.SINGLE_PRESET_WIDTH,
       0,
       Player.SINGLE_PRESET_WIDTH,
       Player.playerImage.height,
