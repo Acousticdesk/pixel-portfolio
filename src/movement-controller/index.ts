@@ -8,32 +8,38 @@ export class MovementController {
   static move() {
     const velocity = PLAYER_ENUMS.MOVEMENT_VELOCITY;
     const boundaries = BoundaryController.getBoundaries();
-    const isCollisionDetected =
-      PlayerBoundaryCollisionController.isCollisionDetected();
 
-    if (isCollisionDetected) {
-      return;
-    }
-
-    if (Keyboard.keys.w.pressed) {
+    if (
+      Keyboard.keys.w.pressed &&
+      !PlayerBoundaryCollisionController.isCollisionDetected([0, -velocity])
+    ) {
       Map.setImageOffsetY(Map.imageOffsetY + velocity);
       boundaries.forEach((boundary) =>
         boundary.setY(boundary.getY() + velocity)
       );
     }
-    if (Keyboard.keys.s.pressed) {
+    if (
+      Keyboard.keys.s.pressed &&
+      !PlayerBoundaryCollisionController.isCollisionDetected([0, velocity])
+    ) {
       Map.setImageOffsetY(Map.imageOffsetY - velocity);
       boundaries.forEach((boundary) =>
         boundary.setY(boundary.getY() - velocity)
       );
     }
-    if (Keyboard.keys.a.pressed) {
+    if (
+      Keyboard.keys.a.pressed &&
+      !PlayerBoundaryCollisionController.isCollisionDetected([-velocity, 0])
+    ) {
       Map.setImageOffsetX(Map.imageOffsetX + velocity);
       boundaries.forEach((boundary) =>
         boundary.setX(boundary.getX() + velocity)
       );
     }
-    if (Keyboard.keys.d.pressed) {
+    if (
+      Keyboard.keys.d.pressed &&
+      !PlayerBoundaryCollisionController.isCollisionDetected([velocity, 0])
+    ) {
       Map.setImageOffsetX(Map.imageOffsetX - velocity);
       boundaries.forEach((boundary) =>
         boundary.setX(boundary.getX() - velocity)

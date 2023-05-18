@@ -10,18 +10,21 @@ export class PlayerBoundaryCollisionController {
   ) {
     return (
       box1.x + box1.width >= box2.x &&
-      box1.x <= box1.x + box1.width &&
+      box1.x <= box2.x + box2.width &&
       box1.y <= box2.y + box2.height &&
       box1.y + box1.height >= box2.y
     );
   }
-  static isCollisionDetected() {
+  // playerDirection is required to predict the next user position during the movement
+  // we need to predict the next position to prevent being stuck in a collision
+  // without possibility to move
+  static isCollisionDetected(playerDirection: number[] = [0, 0]) {
     for (let boundary of BoundaryController.getBoundaries()) {
       if (
         PlayerBoundaryCollisionController.rectangularCollision(
           {
-            x: Player.x - MAP_ENUMS.INITIAL_MAP_POSITION_X,
-            y: Player.y - MAP_ENUMS.INITIAL_MAP_POSITION_Y,
+            x: Player.x + playerDirection[0] - MAP_ENUMS.INITIAL_MAP_POSITION_X,
+            y: Player.y + playerDirection[1] - MAP_ENUMS.INITIAL_MAP_POSITION_Y,
             width: Player.SINGLE_PRESET_WIDTH,
             height: Player.playerImage.height,
           },
