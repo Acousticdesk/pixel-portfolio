@@ -16,6 +16,7 @@ export class Player {
     PLAYER_ENUMS.MOVEMENT_DIRECTION_DOWN;
   static currentMovementSpriteIndex = 0;
   static isMoving = false;
+  static lastMovementSpriteChange = Date.now();
 
   static init() {
     const playerImage = new Image();
@@ -45,7 +46,11 @@ export class Player {
   // actual movement of the player on the map is performed by changing the position of the map background
   // the current method is only being used to animate the player's movement
   static move() {
-    if (!Player.isMoving) {
+    // prevent updating the sprite on each requestAnimationFrame tick
+    const movementAnimationRateShouldThrottle =
+      Date.now() - Player.lastMovementSpriteChange <= 50;
+
+    if (!Player.isMoving || movementAnimationRateShouldThrottle) {
       return;
     }
     // we need it to know the range of the sprite where a proper move direction is drawn
@@ -55,6 +60,7 @@ export class Player {
     if (Player.currentMovementSpriteIndex > spriteIndexRange[1]) {
       Player.currentMovementSpriteIndex = spriteIndexRange[0];
     }
+    Player.lastMovementSpriteChange = Date.now();
   }
 
   static startMoving() {
