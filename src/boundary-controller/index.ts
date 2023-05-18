@@ -10,7 +10,7 @@ export class BoundaryController {
   }
 
   static draw() {
-    BoundaryController.boundaries.forEach((boundary) => {
+    BoundaryController.getBoundaries().forEach((boundary) => {
       boundary.draw();
     });
   }

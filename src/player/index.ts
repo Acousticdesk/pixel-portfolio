@@ -20,7 +20,7 @@ export class Player {
         const canvas = Canvas.getCanvas();
 
         Player.x = canvas.width / 2 - Player.SINGLE_PRESET_WIDTH / 2;
-        Player.y = canvas.height / 2 - Player.SINGLE_PRESET_WIDTH / 2;
+        Player.y = canvas.height / 2 - playerImage.height / 2;
 
         Player.draw();
         resolve();

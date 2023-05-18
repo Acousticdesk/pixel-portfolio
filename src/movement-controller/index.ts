@@ -2,11 +2,18 @@ import { Keyboard } from "../keyboard";
 import { Map } from "../map";
 import { PLAYER_ENUMS } from "../player/enums";
 import { BoundaryController } from "../boundary-controller";
+import { PlayerBoundaryCollisionController } from "../player-boundary-collision-controller";
 
 export class MovementController {
   static move() {
     const velocity = PLAYER_ENUMS.MOVEMENT_VELOCITY;
     const boundaries = BoundaryController.getBoundaries();
+    const isCollisionDetected =
+      PlayerBoundaryCollisionController.isCollisionDetected();
+
+    if (isCollisionDetected) {
+      return;
+    }
 
     if (Keyboard.keys.w.pressed) {
       Map.setImageOffsetY(Map.imageOffsetY + velocity);

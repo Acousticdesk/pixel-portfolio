@@ -1,6 +1,7 @@
 import { Player } from "../player";
 import { BoundaryController } from "../boundary-controller";
 import { Boundary } from "../boundary";
+import { MAP_ENUMS } from "../map/enums";
 
 export class PlayerBoundaryCollisionController {
   static rectangularCollision(
@@ -10,8 +11,8 @@ export class PlayerBoundaryCollisionController {
     return (
       box1.x + box1.width >= box2.x &&
       box1.x <= box1.x + box1.width &&
-      box1.y + box1.height <= box2.y &&
-      box1.y >= box1.y + box1.height
+      box1.y <= box2.y + box2.height &&
+      box1.y + box1.height >= box2.y
     );
   }
   static isCollisionDetected() {
@@ -19,9 +20,9 @@ export class PlayerBoundaryCollisionController {
       if (
         PlayerBoundaryCollisionController.rectangularCollision(
           {
-            x: Player.x,
-            width: Player.playerImage.width,
-            y: Player.y,
+            x: Player.x - MAP_ENUMS.INITIAL_MAP_POSITION_X,
+            y: Player.y - MAP_ENUMS.INITIAL_MAP_POSITION_Y,
+            width: Player.SINGLE_PRESET_WIDTH,
             height: Player.playerImage.height,
           },
           {
