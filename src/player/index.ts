@@ -65,6 +65,10 @@ export class Player {
     this.isMoving = false;
   }
 
+  static setMovementDirection(direction: typeof Player.movementDirection) {
+    Player.movementDirection = direction;
+  }
+
   static draw() {
     Canvas.getCtx().drawImage(
       Player.playerImage,
