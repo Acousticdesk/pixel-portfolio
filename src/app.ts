@@ -7,6 +7,7 @@ import { collisions } from "./collisions";
 import { BoundaryMapper } from "./boundary-mapper";
 import { BoundaryController } from "./boundary-controller";
 import { MapForeground } from "./map-foreground";
+import { MapNPCController } from "./map-npc-controller";
 
 function animate() {
   Canvas.resetCanvas();
@@ -14,6 +15,8 @@ function animate() {
   Map.draw();
   BoundaryController.draw();
   Player.move();
+  Player.draw();
+  MapNPCController.selectNPCsOnCurrentMap().updateIdlingPosition().draw();
   Player.draw();
   MapForeground.draw();
   window.requestAnimationFrame(animate);
@@ -25,6 +28,7 @@ export async function main() {
   Canvas.init();
   await Map.init();
   await Player.init();
+  await MapNPCController.init();
   await MapForeground.init();
   Keyboard.init();
   animate();

@@ -5,6 +5,7 @@ import { PLAYER_ENUMS } from "../player/enums";
 import { BoundaryController } from "../boundary-controller";
 import { PlayerBoundaryCollisionController } from "../player-boundary-collision-controller";
 import { Player } from "../player";
+import { MapNPCController } from "../map-npc-controller";
 
 export class MovementController {
   static move() {
@@ -24,6 +25,11 @@ export class MovementController {
       boundaries.forEach((boundary) =>
         boundary.setY(boundary.getY() + velocity)
       );
+      MapNPCController.selectNPCsOnCurrentMap()
+        .getNPCs()
+        .forEach((npc) => {
+          npc.setY(npc.getY() + velocity);
+        });
     }
     if (
       Keyboard.keys.s.pressed &&
@@ -39,6 +45,11 @@ export class MovementController {
       boundaries.forEach((boundary) =>
         boundary.setY(boundary.getY() - velocity)
       );
+      MapNPCController.selectNPCsOnCurrentMap()
+        .getNPCs()
+        .forEach((npc) => {
+          npc.setY(npc.getY() - velocity);
+        });
     }
     if (
       Keyboard.keys.a.pressed &&
@@ -51,6 +62,11 @@ export class MovementController {
       boundaries.forEach((boundary) =>
         boundary.setX(boundary.getX() + velocity)
       );
+      MapNPCController.selectNPCsOnCurrentMap()
+        .getNPCs()
+        .forEach((npc) => {
+          npc.setX(npc.getX() + velocity);
+        });
     }
     if (
       Keyboard.keys.d.pressed &&
@@ -66,6 +82,11 @@ export class MovementController {
       boundaries.forEach((boundary) =>
         boundary.setX(boundary.getX() - velocity)
       );
+      MapNPCController.selectNPCsOnCurrentMap()
+        .getNPCs()
+        .forEach((npc) => {
+          npc.setX(npc.getX() - velocity);
+        });
     }
   }
 }
