@@ -1,5 +1,6 @@
 import { MAP_ENUMS } from "../map/enums";
 
+// todo akicha: create one for all types of area detection
 export class BoundaryMapper {
   static createBoundaryCoordinates(
     collisions: (0 | MAP_ENUMS.COLLISION_TILE_VALUE)[][]
@@ -11,6 +12,8 @@ export class BoundaryMapper {
           boundaryCoordinates.push({
             x: j * MAP_ENUMS.TILE_SIZE * (MAP_ENUMS.IMAGE_ZOOM_PERCENTS / 100),
             y: i * MAP_ENUMS.TILE_SIZE * (MAP_ENUMS.IMAGE_ZOOM_PERCENTS / 100),
+            // todo akicha: to be applied only to forum area
+            value: collisions[i][j],
           });
         }
       }

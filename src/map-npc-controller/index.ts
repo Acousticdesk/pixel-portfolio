@@ -11,7 +11,8 @@ export class MapNPCController {
     const map1NPCController = new NPCController();
     const map1ReceptionistNPC = new NPC({ x: 820, y: 135 });
     const map1ReceptionistNPCCompanion = new CompanionDecorator(
-      map1ReceptionistNPC
+      map1ReceptionistNPC,
+      1816
     );
     await map1ReceptionistNPCCompanion.init(
       NPC_IMAGES.MAP_1_RECEPTIONIST_NPC_IMAGE

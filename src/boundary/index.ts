@@ -1,13 +1,17 @@
 import { Canvas } from "../canvas";
 import { MAP_ENUMS } from "../map/enums";
 
+// todo akicha: create one for each type of tiles
 export class Boundary {
   x: number;
   y: number;
+  value: number;
   static size = MAP_ENUMS.TILE_SIZE * (MAP_ENUMS.IMAGE_ZOOM_PERCENTS / 100);
-  constructor({ x, y }: { x: number; y: number }) {
+  constructor({ x, y, value }: { x: number; y: number; value: number }) {
     this.x = x;
     this.y = y;
+    // todo akicha: only for formArea
+    this.value = value;
   }
   draw() {
     const ctx = Canvas.getCtx();

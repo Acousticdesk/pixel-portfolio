@@ -6,6 +6,7 @@ import { BoundaryController } from "../boundary-controller";
 import { PlayerBoundaryCollisionController } from "../player-boundary-collision-controller";
 import { Player } from "../player";
 import { MapNPCController } from "../map-npc-controller";
+import { ForumAreaController } from "../forum-area-controller";
 
 export class MovementController {
   static move() {
@@ -14,6 +15,7 @@ export class MovementController {
 
     Player.stopMoving();
 
+    // todo akicha: register movables
     if (
       Keyboard.keys.w.pressed &&
       !PlayerBoundaryCollisionController.isCollisionDetected([0, -velocity])
@@ -30,6 +32,9 @@ export class MovementController {
         .forEach((npc) => {
           npc.setY(npc.getY() + velocity);
         });
+      ForumAreaController.getForumAreas().forEach((forumArea) =>
+        forumArea.setY(forumArea.getY() + velocity)
+      );
     }
     if (
       Keyboard.keys.s.pressed &&
@@ -50,6 +55,9 @@ export class MovementController {
         .forEach((npc) => {
           npc.setY(npc.getY() - velocity);
         });
+      ForumAreaController.getForumAreas().forEach((forumArea) =>
+        forumArea.setY(forumArea.getY() - velocity)
+      );
     }
     if (
       Keyboard.keys.a.pressed &&
@@ -67,6 +75,9 @@ export class MovementController {
         .forEach((npc) => {
           npc.setX(npc.getX() + velocity);
         });
+      ForumAreaController.getForumAreas().forEach((forumArea) =>
+        forumArea.setX(forumArea.getX() + velocity)
+      );
     }
     if (
       Keyboard.keys.d.pressed &&
@@ -87,6 +98,9 @@ export class MovementController {
         .forEach((npc) => {
           npc.setX(npc.getX() - velocity);
         });
+      ForumAreaController.getForumAreas().forEach((forumArea) =>
+        forumArea.setX(forumArea.getX() - velocity)
+      );
     }
   }
 }

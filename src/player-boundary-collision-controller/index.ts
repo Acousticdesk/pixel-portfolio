@@ -3,6 +3,7 @@ import { BoundaryController } from "../boundary-controller";
 import { Boundary } from "../boundary";
 import { MAP_ENUMS } from "../map/enums";
 
+// todo akicha: rectangular collision is common for each types of collision in game
 export class PlayerBoundaryCollisionController {
   static rectangularCollision(
     box1: { x: number; y: number; width: number; height: number },
