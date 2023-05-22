@@ -4,12 +4,12 @@ import { NPC_CONSTS } from "./consts";
 
 // NPC stands for Non-Playable Character
 export class NPC {
-  x: number;
-  y: number;
-  SINGLE_PRESET_WIDTH?: number;
-  npcImage?: HTMLImageElement;
-  currentIdleSpriteIndex = NPC_CONSTS.IDLING_DOWN_SPRITE_INDEX[0];
-  lastIdleSpriteChange = Date.now();
+  private x: number;
+  private y: number;
+  private SINGLE_PRESET_WIDTH?: number;
+  private npcImage?: HTMLImageElement;
+  private currentIdleSpriteIndex = NPC_CONSTS.IDLING_DOWN_SPRITE_INDEX[0];
+  private lastIdleSpriteChange = Date.now();
 
   constructor({ x, y }: { x: number; y: number }) {
     this.x = x;

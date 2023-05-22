@@ -1,4 +1,4 @@
-import { NPC } from "../npc";
+import { NPC } from "../npc/interfaces";
 
 export class NPCController {
   private npcs: NPC[] = [];
