@@ -11,6 +11,7 @@ import { MapForeground } from "./map-foreground";
 import { MapNPCController } from "./map-npc-controller";
 import { DialogAreaController } from "./dialog-area-controller";
 import { NPCDialogController } from "./npc-dialog-controller";
+import { MovablesController } from "./movables-controller";
 
 function animate() {
   Canvas.resetCanvas();
@@ -50,6 +51,20 @@ export async function main() {
       }),
     })
   );
+
+  MovablesController.registerCollection({
+    getItems: () => BoundaryController.getBoundaries(),
+  });
+
+  MovablesController.registerCollection({
+    // todo akicha
+    // @ts-ignore
+    getItems: () => MapNPCController.selectNPCsOnCurrentMap().getNPCs(),
+  });
+
+  MovablesController.registerCollection({
+    getItems: () => DialogAreaController.getDialogAreas(),
+  });
 
   Canvas.init();
   await Map.init();

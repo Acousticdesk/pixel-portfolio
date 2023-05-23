@@ -2,20 +2,16 @@ import { Keyboard } from "../keyboard";
 import { Map } from "../map";
 import { MapForeground } from "../map-foreground";
 import { PLAYER_ENUMS } from "../player/enums";
-import { BoundaryController } from "../boundary-controller";
 import { PlayerBoundaryCollisionController } from "../player-boundary-collision-controller";
 import { Player } from "../player";
-import { MapNPCController } from "../map-npc-controller";
-import { DialogAreaController } from "../dialog-area-controller";
+import { MovablesController } from "../movables-controller";
 
 export class MovementController {
   static move() {
     const velocity = PLAYER_ENUMS.MOVEMENT_VELOCITY;
-    const boundaries = BoundaryController.getBoundaries();
 
     Player.stopMoving();
 
-    // todo akicha: register movables
     if (
       Keyboard.keys.w.pressed &&
       !PlayerBoundaryCollisionController.isCollisionDetected([0, -velocity])
@@ -24,17 +20,9 @@ export class MovementController {
       Player.startMoving();
       Map.setImageOffsetY(Map.imageOffsetY + velocity);
       MapForeground.setImageOffsetY(MapForeground.imageOffsetY + velocity);
-      boundaries.forEach((boundary) =>
-        boundary.setY(boundary.getY() + velocity)
-      );
-      MapNPCController.selectNPCsOnCurrentMap()
-        .getNPCs()
-        .forEach((npc) => {
-          npc.setY(npc.getY() + velocity);
-        });
-      DialogAreaController.getDialogAreas().forEach((dialogArea) =>
-        dialogArea.setY(dialogArea.getY() + velocity)
-      );
+      MovablesController.move((movable) => {
+        movable.setY(movable.getY() + velocity);
+      });
     }
     if (
       Keyboard.keys.s.pressed &&
@@ -47,17 +35,9 @@ export class MovementController {
       Player.startMoving();
       Map.setImageOffsetY(Map.imageOffsetY - velocity);
       MapForeground.setImageOffsetY(MapForeground.imageOffsetY - velocity);
-      boundaries.forEach((boundary) =>
-        boundary.setY(boundary.getY() - velocity)
-      );
-      MapNPCController.selectNPCsOnCurrentMap()
-        .getNPCs()
-        .forEach((npc) => {
-          npc.setY(npc.getY() - velocity);
-        });
-      DialogAreaController.getDialogAreas().forEach((dialogArea) =>
-        dialogArea.setY(dialogArea.getY() - velocity)
-      );
+      MovablesController.move((movable) => {
+        movable.setY(movable.getY() - velocity);
+      });
     }
     if (
       Keyboard.keys.a.pressed &&
@@ -67,17 +47,9 @@ export class MovementController {
       Player.startMoving();
       Map.setImageOffsetX(Map.imageOffsetX + velocity);
       MapForeground.setImageOffsetX(MapForeground.imageOffsetX + velocity);
-      boundaries.forEach((boundary) =>
-        boundary.setX(boundary.getX() + velocity)
-      );
-      MapNPCController.selectNPCsOnCurrentMap()
-        .getNPCs()
-        .forEach((npc) => {
-          npc.setX(npc.getX() + velocity);
-        });
-      DialogAreaController.getDialogAreas().forEach((dialogArea) =>
-        dialogArea.setX(dialogArea.getX() + velocity)
-      );
+      MovablesController.move((movable) => {
+        movable.setX(movable.getX() + velocity);
+      });
     }
     if (
       Keyboard.keys.d.pressed &&
@@ -90,17 +62,9 @@ export class MovementController {
       Player.startMoving();
       Map.setImageOffsetX(Map.imageOffsetX - velocity);
       MapForeground.setImageOffsetX(MapForeground.imageOffsetX - velocity);
-      boundaries.forEach((boundary) =>
-        boundary.setX(boundary.getX() - velocity)
-      );
-      MapNPCController.selectNPCsOnCurrentMap()
-        .getNPCs()
-        .forEach((npc) => {
-          npc.setX(npc.getX() - velocity);
-        });
-      DialogAreaController.getDialogAreas().forEach((dialogArea) =>
-        dialogArea.setX(dialogArea.getX() - velocity)
-      );
+      MovablesController.move((movable) => {
+        movable.setX(movable.getX() - velocity);
+      });
     }
   }
 }

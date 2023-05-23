@@ -1,3 +1,4 @@
+// todo akicha: replace duplicates between NPC, InteractionTile and Movable
 export interface InteractionTile {
   x: number;
   y: number;
