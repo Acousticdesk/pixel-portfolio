@@ -28,9 +28,27 @@ function animate() {
 }
 
 export async function main() {
-  BoundaryController.init(BoundaryMapper.createBoundaryCoordinates(collisions));
+  BoundaryController.init(
+    BoundaryMapper.createBoundaryCoordinates<{ x: number; y: number }>(
+      collisions,
+      {
+        createBoundary: ({ x, y }) => ({ x, y }),
+      }
+    )
+  );
+
   ForumAreaController.init(
-    BoundaryMapper.createBoundaryCoordinates(forumAreas)
+    BoundaryMapper.createBoundaryCoordinates<{
+      x: number;
+      y: number;
+      value: number;
+    }>(forumAreas, {
+      createBoundary: ({ x, y, i, j }) => ({
+        x,
+        y,
+        value: forumAreas[i][j],
+      }),
+    })
   );
 
   Canvas.init();
