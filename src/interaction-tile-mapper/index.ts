@@ -1,6 +1,5 @@
 import { MAP_ENUMS } from "../map/enums";
 
-// todo akicha: name it InteractionTile
 export class InteractionTileMapper {
   static createInteractionTileCoordinates<T>(
     collisions: (0 | MAP_ENUMS.COLLISION_TILE_VALUE)[][],
