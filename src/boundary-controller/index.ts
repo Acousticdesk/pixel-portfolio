@@ -5,7 +5,6 @@ export class BoundaryController {
 
   static init(boundaries: { x: number; y: number }[]) {
     BoundaryController.boundaries = boundaries.map(
-      // @ts-ignore
       (boundary) => new Boundary(boundary)
     );
   }

@@ -1,12 +1,11 @@
-import { Boundary } from "../boundary";
+import { DialogArea } from "../dialog-area";
 
 export class ForumAreaController {
-  static forumAreas: Boundary[];
+  static forumAreas: DialogArea[];
 
-  static init(forumAreas: { x: number; y: number }[]) {
+  static init(forumAreas: { x: number; y: number; value: number }[]) {
     ForumAreaController.forumAreas = forumAreas.map(
-      // @ts-ignore
-      (forumArea) => new Boundary(forumArea)
+      (forumArea) => new DialogArea(forumArea)
     );
   }
 
