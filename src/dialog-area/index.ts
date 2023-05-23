@@ -1,8 +1,9 @@
 import { Canvas } from "../canvas";
 import { MAP_ENUMS } from "../map/enums";
 import { InteractionTile } from "../interaction-tile";
+import { Movable } from "../movables-controller/interfaces";
 
-export class DialogArea implements InteractionTile {
+export class DialogArea implements InteractionTile, Movable {
   x: number;
   y: number;
   value: number;

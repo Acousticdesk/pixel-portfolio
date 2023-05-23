@@ -19,9 +19,9 @@ export class PlayerBoundaryCollisionController {
             height: Player.playerImage.height,
           },
           {
-            x: boundary.x,
+            x: boundary.getX(),
             width: Boundary.size,
-            y: boundary.y,
+            y: boundary.getY(),
             height: Boundary.size,
           }
         )

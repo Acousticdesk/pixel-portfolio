@@ -1,10 +1,11 @@
 import { Canvas } from "../canvas";
 import { MAP_ENUMS } from "../map/enums";
 import { InteractionTile } from "../interaction-tile";
+import { Movable } from "../movables-controller/interfaces";
 
-export class Boundary implements InteractionTile {
-  x: number;
-  y: number;
+export class Boundary implements InteractionTile, Movable {
+  private x: number;
+  private y: number;
   static size = MAP_ENUMS.TILE_SIZE * (MAP_ENUMS.IMAGE_ZOOM_PERCENTS / 100);
   constructor({ x, y }: { x: number; y: number }) {
     this.x = x;
