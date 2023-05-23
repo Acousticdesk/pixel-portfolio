@@ -7,7 +7,8 @@ import { Collision } from "../collision";
 
 export class PlayerDialogAreaCollisionController {
   static findCollisionTile() {
-    // todo akicha: to enum
+    // todo akicha: fix issue with player with offset detection at the bottom of the table
+    // when a or d key is pressed
     const offsetX =
       Player.movementDirection === PLAYER_ENUMS.MOVEMENT_DIRECTION_RIGHT
         ? 5
