@@ -3,9 +3,10 @@ import { Canvas } from "../../canvas";
 import { COMPANION_DECORATOR_ENUMS } from "./enums";
 import { NPC } from "../interfaces";
 import { Companion } from "./interfaces";
+import { Movable } from "../../movables-controller/interfaces";
 
 export class CompanionDecorator implements NPC, Companion {
-  private npc: NPC;
+  private npc: NPC & Movable;
   private interactionIcon!: HTMLImageElement;
   private interactionIconX = 0;
   private interactionIconY = 0;
@@ -14,7 +15,7 @@ export class CompanionDecorator implements NPC, Companion {
   private canSpeak = false;
   // this property is used to find the closes CompanionNPC when user collides with
   private dialogAreaId = 0;
-  constructor(npc: NPC, dialogAreaId: number) {
+  constructor(npc: NPC & Movable, dialogAreaId: number) {
     this.npc = npc;
     this.interactionIconX = this.npc.getX();
     this.interactionIconY =
