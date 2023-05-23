@@ -57,8 +57,6 @@ export async function main() {
   });
 
   MovablesController.registerCollection({
-    // todo akicha
-    // @ts-ignore
     getItems: () => MapNPCController.selectNPCsOnCurrentMap().getNPCs(),
   });
 
