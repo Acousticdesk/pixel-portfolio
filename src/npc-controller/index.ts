@@ -1,9 +1,10 @@
 import { NPC } from "../npc/interfaces";
+import { Movable } from "../movables-controller/interfaces";
 
 export class NPCController {
-  private npcs: NPC[] = [];
+  private npcs: (NPC & Movable)[] = [];
 
-  addNPC(npc: NPC) {
+  addNPC(npc: NPC & Movable) {
     this.npcs.push(npc);
   }
 

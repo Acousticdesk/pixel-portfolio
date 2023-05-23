@@ -1,9 +1,10 @@
 import { NPC_ENUMS } from "./enums";
 import { Canvas } from "../canvas";
 import { NPC_CONSTS } from "./consts";
+import { Movable } from "../movables-controller/interfaces";
 
 // NPC stands for Non-Playable Character
-export class NPC {
+export class NPC implements Movable {
   private x: number;
   private y: number;
   private SINGLE_PRESET_WIDTH?: number;

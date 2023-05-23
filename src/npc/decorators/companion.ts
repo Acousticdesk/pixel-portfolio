@@ -2,20 +2,26 @@ import dialogCloudImageBase64 from "../assets/images/dialog-cloud.png";
 import { Canvas } from "../../canvas";
 import { COMPANION_DECORATOR_ENUMS } from "./enums";
 import { NPC } from "../interfaces";
+import { Companion } from "./interfaces";
+import { Movable } from "../../movables-controller/interfaces";
 
-export class CompanionDecorator implements NPC {
-  private npc: NPC;
+export class CompanionDecorator implements NPC, Companion {
+  private npc: NPC & Movable;
   private interactionIcon!: HTMLImageElement;
   private interactionIconX = 0;
   private interactionIconY = 0;
   private interactionIconAnimationStep = 0;
   private lastIdleInteractionIconChange = Date.now();
-  constructor(npc: NPC) {
+  private canSpeak = false;
+  // this property is used to find the closes CompanionNPC when user collides with
+  private dialogAreaId = 0;
+  constructor(npc: NPC & Movable, dialogAreaId: number) {
     this.npc = npc;
     this.interactionIconX = this.npc.getX();
     this.interactionIconY =
       this.npc.getY() +
       COMPANION_DECORATOR_ENUMS.DIALOG_INTERACTION_ICON_OFFSET_Y;
+    this.dialogAreaId = dialogAreaId;
   }
   async init(base64String: string) {
     this.interactionIcon = new Image();
@@ -49,6 +55,9 @@ export class CompanionDecorator implements NPC {
   }
 
   draw() {
+    if (!this.canSpeak) {
+      return this.npc.draw();
+    }
     Canvas.getCtx().drawImage(
       this.interactionIcon,
       0,
@@ -76,5 +85,17 @@ export class CompanionDecorator implements NPC {
     this.interactionIconY =
       y + COMPANION_DECORATOR_ENUMS.DIALOG_INTERACTION_ICON_OFFSET_Y;
     return this.npc.setY(y);
+  }
+
+  allowToTalkTo() {
+    this.canSpeak = true;
+  }
+
+  restrictToTalkTo() {
+    this.canSpeak = false;
+  }
+
+  getDialogAreaId() {
+    return this.dialogAreaId;
   }
 }
