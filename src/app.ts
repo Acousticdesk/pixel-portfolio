@@ -5,7 +5,7 @@ import { MovementController } from "./movement-controller";
 import { Keyboard } from "./keyboard";
 import { collisions } from "./collisions";
 import { forumAreas } from "./forum-areas";
-import { BoundaryMapper } from "./boundary-mapper";
+import { InteractionTileMapper } from "./interaction-tile-mapper";
 import { BoundaryController } from "./boundary-controller";
 import { MapForeground } from "./map-foreground";
 import { MapNPCController } from "./map-npc-controller";
@@ -29,21 +29,21 @@ function animate() {
 
 export async function main() {
   BoundaryController.init(
-    BoundaryMapper.createBoundaryCoordinates<{ x: number; y: number }>(
-      collisions,
-      {
-        createBoundary: ({ x, y }) => ({ x, y }),
-      }
-    )
+    InteractionTileMapper.createInteractionTileCoordinates<{
+      x: number;
+      y: number;
+    }>(collisions, {
+      createInteractionTile: ({ x, y }) => ({ x, y }),
+    })
   );
 
   ForumAreaController.init(
-    BoundaryMapper.createBoundaryCoordinates<{
+    InteractionTileMapper.createInteractionTileCoordinates<{
       x: number;
       y: number;
       value: number;
     }>(forumAreas, {
-      createBoundary: ({ x, y, i, j }) => ({
+      createInteractionTile: ({ x, y, i, j }) => ({
         x,
         y,
         value: forumAreas[i][j],
