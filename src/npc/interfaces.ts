@@ -1,3 +1,4 @@
+// todo akicha: create a PositionedObject interface
 export interface NPC {
   init: (image: string) => Promise<void>;
   updateIdlingPosition: () => void;
