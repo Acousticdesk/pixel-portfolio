@@ -13,15 +13,14 @@ export class CompanionDecorator implements NPC, Companion {
   private lastIdleInteractionIconChange = Date.now();
   private canSpeak = false;
   // this property is used to find the closes CompanionNPC when user collides with
-  // forum area
-  private forumAreaId = 0;
-  constructor(npc: NPC, forumAreaId: number) {
+  private dialogAreaId = 0;
+  constructor(npc: NPC, dialogAreaId: number) {
     this.npc = npc;
     this.interactionIconX = this.npc.getX();
     this.interactionIconY =
       this.npc.getY() +
       COMPANION_DECORATOR_ENUMS.DIALOG_INTERACTION_ICON_OFFSET_Y;
-    this.forumAreaId = forumAreaId;
+    this.dialogAreaId = dialogAreaId;
   }
   async init(base64String: string) {
     this.interactionIcon = new Image();
@@ -95,7 +94,7 @@ export class CompanionDecorator implements NPC, Companion {
     this.canSpeak = false;
   }
 
-  getForumAreaId() {
-    return this.forumAreaId;
+  getDialogAreaId() {
+    return this.dialogAreaId;
   }
 }

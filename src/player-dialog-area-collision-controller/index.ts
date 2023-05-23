@@ -1,11 +1,11 @@
 import { Player } from "../player";
 import { Boundary } from "../boundary";
 import { MAP_ENUMS } from "../map/enums";
-import { ForumAreaController } from "../forum-area-controller";
+import { DialogAreaController } from "../dialog-area-controller";
 import { PLAYER_ENUMS } from "../player/enums";
 
 // todo akicha: rectangular collision is common for each types of collision in game
-export class PlayerForumAreaCollisionController {
+export class PlayerDialogAreaCollisionController {
   static rectangularCollision(
     box1: { x: number; y: number; width: number; height: number },
     box2: { x: number; y: number; width: number; height: number }
@@ -27,9 +27,9 @@ export class PlayerForumAreaCollisionController {
       Player.movementDirection === PLAYER_ENUMS.MOVEMENT_DIRECTION_UP
         ? -10
         : 10;
-    for (let forumArea of ForumAreaController.getForumAreas()) {
+    for (let dialogArea of DialogAreaController.getDialogAreas()) {
       if (
-        PlayerForumAreaCollisionController.rectangularCollision(
+        PlayerDialogAreaCollisionController.rectangularCollision(
           {
             x: Player.x + offsetX - MAP_ENUMS.INITIAL_MAP_POSITION_X,
             y: Player.y + offsetY - MAP_ENUMS.INITIAL_MAP_POSITION_Y,
@@ -37,14 +37,14 @@ export class PlayerForumAreaCollisionController {
             height: Player.playerImage.height,
           },
           {
-            x: forumArea.x,
+            x: dialogArea.x,
             width: Boundary.size,
-            y: forumArea.y,
+            y: dialogArea.y,
             height: Boundary.size,
           }
         )
       ) {
-        return forumArea;
+        return dialogArea;
       }
     }
 

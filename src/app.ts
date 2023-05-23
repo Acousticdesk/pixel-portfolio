@@ -4,12 +4,12 @@ import { Player } from "./player";
 import { MovementController } from "./movement-controller";
 import { Keyboard } from "./keyboard";
 import { collisions } from "./collisions";
-import { forumAreas } from "./forum-areas";
+import { dialogAreas } from "./dialog-areas";
 import { InteractionTileMapper } from "./interaction-tile-mapper";
 import { BoundaryController } from "./boundary-controller";
 import { MapForeground } from "./map-foreground";
 import { MapNPCController } from "./map-npc-controller";
-import { ForumAreaController } from "./forum-area-controller";
+import { DialogAreaController } from "./dialog-area-controller";
 import { NpcDialogController } from "./npc-dialog-controller";
 
 function animate() {
@@ -17,7 +17,7 @@ function animate() {
   MovementController.move();
   Map.draw();
   BoundaryController.draw();
-  ForumAreaController.draw();
+  DialogAreaController.draw();
   NpcDialogController.trySpeakToAnyone();
   Player.move();
   Player.draw();
@@ -37,16 +37,16 @@ export async function main() {
     })
   );
 
-  ForumAreaController.init(
+  DialogAreaController.init(
     InteractionTileMapper.createInteractionTileCoordinates<{
       x: number;
       y: number;
       value: number;
-    }>(forumAreas, {
+    }>(dialogAreas, {
       createInteractionTile: ({ x, y, i, j }) => ({
         x,
         y,
-        value: forumAreas[i][j],
+        value: dialogAreas[i][j],
       }),
     })
   );

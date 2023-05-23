@@ -1,7 +1,7 @@
 // the collisions layer exported from Tiled as is
 import { MAP_ENUMS } from "./map/enums";
 
-const forumAreasRaw = [
+const dialogAreasRaw = [
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -16,8 +16,8 @@ const forumAreasRaw = [
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ];
 
-export const forumAreas: number[][] = [];
+export const dialogAreas: number[][] = [];
 
-for (let i = 0; i < forumAreasRaw.length; i += MAP_ENUMS.MAP_WIDTH) {
-  forumAreas.push(forumAreasRaw.slice(i, i + MAP_ENUMS.MAP_WIDTH));
+for (let i = 0; i < dialogAreasRaw.length; i += MAP_ENUMS.MAP_WIDTH) {
+  dialogAreas.push(dialogAreasRaw.slice(i, i + MAP_ENUMS.MAP_WIDTH));
 }

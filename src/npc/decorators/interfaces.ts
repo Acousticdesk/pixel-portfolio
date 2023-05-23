@@ -1,3 +1,3 @@
 export interface Companion {
-  getForumAreaId: () => number;
+  getDialogAreaId: () => number;
 }

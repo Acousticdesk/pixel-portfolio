@@ -6,7 +6,7 @@ import { BoundaryController } from "../boundary-controller";
 import { PlayerBoundaryCollisionController } from "../player-boundary-collision-controller";
 import { Player } from "../player";
 import { MapNPCController } from "../map-npc-controller";
-import { ForumAreaController } from "../forum-area-controller";
+import { DialogAreaController } from "../dialog-area-controller";
 
 export class MovementController {
   static move() {
@@ -32,8 +32,8 @@ export class MovementController {
         .forEach((npc) => {
           npc.setY(npc.getY() + velocity);
         });
-      ForumAreaController.getForumAreas().forEach((forumArea) =>
-        forumArea.setY(forumArea.getY() + velocity)
+      DialogAreaController.getDialogAreas().forEach((dialogArea) =>
+        dialogArea.setY(dialogArea.getY() + velocity)
       );
     }
     if (
@@ -55,8 +55,8 @@ export class MovementController {
         .forEach((npc) => {
           npc.setY(npc.getY() - velocity);
         });
-      ForumAreaController.getForumAreas().forEach((forumArea) =>
-        forumArea.setY(forumArea.getY() - velocity)
+      DialogAreaController.getDialogAreas().forEach((dialogArea) =>
+        dialogArea.setY(dialogArea.getY() - velocity)
       );
     }
     if (
@@ -75,8 +75,8 @@ export class MovementController {
         .forEach((npc) => {
           npc.setX(npc.getX() + velocity);
         });
-      ForumAreaController.getForumAreas().forEach((forumArea) =>
-        forumArea.setX(forumArea.getX() + velocity)
+      DialogAreaController.getDialogAreas().forEach((dialogArea) =>
+        dialogArea.setX(dialogArea.getX() + velocity)
       );
     }
     if (
@@ -98,8 +98,8 @@ export class MovementController {
         .forEach((npc) => {
           npc.setX(npc.getX() - velocity);
         });
-      ForumAreaController.getForumAreas().forEach((forumArea) =>
-        forumArea.setX(forumArea.getX() - velocity)
+      DialogAreaController.getDialogAreas().forEach((dialogArea) =>
+        dialogArea.setX(dialogArea.getX() - velocity)
       );
     }
   }
