@@ -10,7 +10,7 @@ import { BoundaryController } from "./boundary-controller";
 import { MapForeground } from "./map-foreground";
 import { MapNPCController } from "./map-npc-controller";
 import { DialogAreaController } from "./dialog-area-controller";
-import { NpcDialogController } from "./npc-dialog-controller";
+import { NPCDialogController } from "./npc-dialog-controller";
 
 function animate() {
   Canvas.resetCanvas();
@@ -18,7 +18,7 @@ function animate() {
   Map.draw();
   BoundaryController.draw();
   DialogAreaController.draw();
-  NpcDialogController.trySpeakToAnyone();
+  NPCDialogController.trySpeakToAnyone();
   Player.move();
   Player.draw();
   MapNPCController.selectNPCsOnCurrentMap().updateIdlingPosition().draw();

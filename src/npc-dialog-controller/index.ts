@@ -1,25 +1,25 @@
 import { PlayerDialogAreaCollisionController } from "../player-dialog-area-collision-controller";
 import { MapNPCController } from "../map-npc-controller";
 import { CompanionDecorator } from "../npc/decorators";
+import { NPC } from "../npc/interfaces";
 
-export class NpcDialogController {
+export class NPCDialogController {
+  static isCompanionNPC(npc: NPC): npc is CompanionDecorator {
+    return npc instanceof CompanionDecorator;
+  }
   static trySpeakToAnyone() {
     const dialogArea = PlayerDialogAreaCollisionController.findCollisionTile();
 
-    // todo akicha: to a separate method
     MapNPCController.selectNPCsOnCurrentMap()
       .getNPCs()
-      .filter((npc) => npc instanceof CompanionDecorator)
-      // @ts-ignore
+      .filter(NPCDialogController.isCompanionNPC)
       .forEach((npc) => npc.restrictToTalkTo());
 
     if (!dialogArea) {
       return;
     }
 
-    // todo akicha
-    const companion = NpcDialogController.findCompanionResponsibleForDialogArea(
-      // @ts-ignore
+    const companion = NPCDialogController.findCompanionResponsibleForDialogArea(
       dialogArea.value
     );
 
@@ -27,19 +27,15 @@ export class NpcDialogController {
       return;
     }
 
-    // @ts-ignore
     companion.allowToTalkTo();
   }
 
-  // todo akicha: should be handled in a separate controller
   private static findCompanionResponsibleForDialogArea(dialogAreaId: number) {
     const companions = MapNPCController.selectNPCsOnCurrentMap()
       .getNPCs()
-      .filter((npc) => npc instanceof CompanionDecorator);
+      .filter(NPCDialogController.isCompanionNPC);
 
-    // todo akicha
     return companions.find(
-      // @ts-ignore
       (companion) => companion.getDialogAreaId() === dialogAreaId
     );
   }
