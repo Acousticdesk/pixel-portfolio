@@ -4,8 +4,6 @@ import { MAP_ENUMS } from "../map/enums";
 import { Sprite } from "../sprite";
 
 export class MapForeground {
-  static mapForeground: HTMLImageElement;
-
   static imageOffsetX = MAP_ENUMS.INITIAL_MAP_POSITION_X;
   static imageOffsetY = MAP_ENUMS.INITIAL_MAP_POSITION_Y;
 
