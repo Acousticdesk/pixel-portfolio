@@ -2,39 +2,27 @@ import { NPC_ENUMS } from "./enums";
 import { Canvas } from "../canvas";
 import { NPC_CONSTS } from "./consts";
 import { Movable } from "../movables-controller/interfaces";
+import { Sprite } from "../sprite";
 
 // NPC stands for Non-Playable Character
 export class NPC implements Movable {
   private x: number;
   private y: number;
   private SINGLE_PRESET_WIDTH?: number;
-  private npcImage?: HTMLImageElement;
   private currentIdleSpriteIndex = NPC_CONSTS.IDLING_DOWN_SPRITE_INDEX[0];
   private lastIdleSpriteChange = Date.now();
+  private sprite!: Sprite;
 
   constructor({ x, y }: { x: number; y: number }) {
     this.x = x;
     this.y = y;
   }
 
-  init(base64String: string) {
-    const npcImage = new Image();
-    npcImage.src = base64String;
-    this.npcImage = npcImage;
-
-    return new Promise<void>((resolve, reject) => {
-      npcImage.onload = () => {
-        this.SINGLE_PRESET_WIDTH =
-          npcImage.width / NPC_ENUMS.NUMBER_OF_IDLE_SPRITE_PRESETS;
-
-        this.draw();
-        resolve();
-      };
-
-      npcImage.onerror = (e) => {
-        reject(e);
-      };
-    });
+  async init(base64String: string) {
+    this.sprite = new Sprite(base64String);
+    await this.sprite.init();
+    this.SINGLE_PRESET_WIDTH =
+      this.sprite.getImage().width / NPC_ENUMS.NUMBER_OF_IDLE_SPRITE_PRESETS;
   }
 
   updateIdlingPosition() {
@@ -53,21 +41,22 @@ export class NPC implements Movable {
   }
 
   draw() {
-    if (!this.npcImage || !this.SINGLE_PRESET_WIDTH) {
+    const npcImage = this.sprite.getImage();
+    if (!npcImage || !this.SINGLE_PRESET_WIDTH) {
       throw new Error(
         "NPC object was never initialized. Please call npc.init() method"
       );
     }
     Canvas.getCtx().drawImage(
-      this.npcImage,
+      npcImage,
       this.currentIdleSpriteIndex * this.SINGLE_PRESET_WIDTH,
       0,
       this.SINGLE_PRESET_WIDTH,
-      this.npcImage.height,
+      npcImage.height,
       this.x,
       this.y,
       this.SINGLE_PRESET_WIDTH,
-      this.npcImage.height
+      npcImage.height
     );
   }
 

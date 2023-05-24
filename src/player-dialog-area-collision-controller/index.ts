@@ -4,6 +4,7 @@ import { MAP_ENUMS } from "../map/enums";
 import { DialogAreaController } from "../dialog-area-controller";
 import { PLAYER_ENUMS } from "../player/enums";
 import { Collision } from "../collision";
+import { Map } from "../map";
 
 export class PlayerDialogAreaCollisionController {
   static findCollisionTile() {
@@ -21,10 +22,10 @@ export class PlayerDialogAreaCollisionController {
       if (
         Collision.rectangularCollision(
           {
-            x: Player.x + offsetX - MAP_ENUMS.INITIAL_MAP_POSITION_X,
-            y: Player.y + offsetY - MAP_ENUMS.INITIAL_MAP_POSITION_Y,
+            x: Player.x + offsetX - Map.initialImageOffsetX,
+            y: Player.y + offsetY - Map.initialImageOffsetY,
             width: Player.SINGLE_PRESET_WIDTH,
-            height: Player.playerImage.height,
+            height: Player.sprite.getImage().height,
           },
           {
             x: dialogArea.x,

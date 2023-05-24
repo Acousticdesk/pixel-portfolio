@@ -1,28 +1,37 @@
 import firstOfficeMapImage from "./assets/images/first-office.png";
 import { Canvas } from "../canvas";
 import { MAP_ENUMS } from "./enums";
+import { Sprite } from "../sprite";
 
 export class Map {
-  static mapImage: HTMLImageElement;
+  static initialImageOffsetX: number;
+  static initialImageOffsetY: number;
+  static imageOffsetX: number;
+  static imageOffsetY: number;
+  static sprite = new Sprite(firstOfficeMapImage);
 
-  static imageOffsetX = MAP_ENUMS.INITIAL_MAP_POSITION_X;
-  static imageOffsetY = MAP_ENUMS.INITIAL_MAP_POSITION_Y;
+  static async init() {
+    await this.sprite.init();
 
-  static init() {
-    return new Promise<void>((resolve, reject) => {
-      const mapImage = new Image();
-      mapImage.src = firstOfficeMapImage;
-      Map.mapImage = mapImage;
-      mapImage.onload = function handleImageLoaded() {
-        Map.draw();
-        resolve();
-      };
-      mapImage.onerror = reject;
-    });
+    Map.initialImageOffsetX =
+      Canvas.getCanvas().width / 2 -
+      (this.sprite.getImage().width / 2 + MAP_ENUMS.TILE_SIZE);
+
+    Map.initialImageOffsetY =
+      Canvas.getCanvas().height / 2 -
+      (this.sprite.getImage().height / 2 +
+        MAP_ENUMS.STARTING_POINT_Y_OFFSET_FROM_TOP_OF_MAP);
+
+    Map.imageOffsetX = Map.initialImageOffsetX;
+    Map.imageOffsetY = Map.initialImageOffsetY;
   }
 
   static draw() {
-    Canvas.getCtx().drawImage(Map.mapImage, Map.imageOffsetX, Map.imageOffsetY);
+    Canvas.getCtx().drawImage(
+      Map.sprite.getImage(),
+      Map.imageOffsetX,
+      Map.imageOffsetY
+    );
   }
 
   static setImageOffsetX(x: number) {

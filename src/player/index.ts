@@ -2,12 +2,12 @@ import playerMovementSprite from "./assets/images/Alex_run_16x16.png";
 import { PLAYER_ENUMS } from "./enums";
 import { Canvas } from "../canvas";
 import { PLAYER_CONSTS } from "./consts";
+import { Sprite } from "../sprite";
 
 export class Player {
   static x: number;
   static y: number;
   static SINGLE_PRESET_WIDTH: number;
-  static playerImage: HTMLImageElement;
   static movementDirection:
     | PLAYER_ENUMS.MOVEMENT_DIRECTION_UP
     | PLAYER_ENUMS.MOVEMENT_DIRECTION_RIGHT
@@ -17,30 +17,22 @@ export class Player {
   static currentMovementSpriteIndex = 0;
   static isMoving = false;
   static lastMovementSpriteChange = Date.now();
+  static sprite = new Sprite(playerMovementSprite);
 
-  static init() {
-    const playerImage = new Image();
-    playerImage.src = playerMovementSprite;
-    Player.playerImage = playerImage;
+  static async init() {
+    await this.sprite.init();
 
-    return new Promise<void>((resolve, reject) => {
-      playerImage.onload = () => {
-        Player.SINGLE_PRESET_WIDTH =
-          playerImage.width / PLAYER_ENUMS.NUMBER_OF_MOVEMENT_SPRITE_PRESETS;
+    const playerImage = this.sprite.getImage();
 
-        const canvas = Canvas.getCanvas();
+    Player.SINGLE_PRESET_WIDTH =
+      playerImage.width / PLAYER_ENUMS.NUMBER_OF_MOVEMENT_SPRITE_PRESETS;
 
-        Player.x = canvas.width / 2 - Player.SINGLE_PRESET_WIDTH / 2;
-        Player.y = canvas.height / 2 - playerImage.height / 2;
+    const canvas = Canvas.getCanvas();
 
-        Player.draw();
-        resolve();
-      };
+    Player.x = canvas.width / 2 - Player.SINGLE_PRESET_WIDTH / 2;
+    Player.y = canvas.height / 2 - playerImage.height / 2;
 
-      playerImage.onerror = (e) => {
-        reject(e);
-      };
-    });
+    Player.draw();
   }
 
   // actual movement of the player on the map is performed by changing the position of the map background
@@ -81,16 +73,17 @@ export class Player {
   }
 
   static draw() {
+    const playerImage = Player.sprite.getImage();
     Canvas.getCtx().drawImage(
-      Player.playerImage,
+      playerImage,
       Player.currentMovementSpriteIndex * Player.SINGLE_PRESET_WIDTH,
       0,
       Player.SINGLE_PRESET_WIDTH,
-      Player.playerImage.height,
+      playerImage.height,
       Player.x,
       Player.y,
       Player.SINGLE_PRESET_WIDTH,
-      Player.playerImage.height
+      playerImage.height
     );
   }
 }
