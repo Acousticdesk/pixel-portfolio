@@ -2,6 +2,7 @@ import { Canvas } from "../canvas";
 import { MAP_ENUMS } from "../map/enums";
 import { InteractionTile } from "../interaction-tile";
 import { Movable } from "../movables-controller/interfaces";
+import { Map } from "../map";
 
 export class Boundary implements InteractionTile, Movable {
   private x: number;
@@ -17,8 +18,8 @@ export class Boundary implements InteractionTile, Movable {
     // ctx.fillStyle = "red";
     ctx.fillStyle = "rgba(255, 0, 0, 0)";
     ctx.fillRect(
-      this.x + MAP_ENUMS.INITIAL_MAP_POSITION_X,
-      this.y + MAP_ENUMS.INITIAL_MAP_POSITION_Y,
+      this.x + Map.initialImageOffsetX,
+      this.y + Map.initialImageOffsetY,
       Boundary.size,
       Boundary.size
     );

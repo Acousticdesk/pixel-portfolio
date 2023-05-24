@@ -1,17 +1,18 @@
 import firstOfficeMapForegroundImage from "./assets/images/first-office-foreground.png";
 import { Canvas } from "../canvas";
-import { MAP_ENUMS } from "../map/enums";
 import { Sprite } from "../sprite";
+import { Map } from "../map";
 
 export class MapForeground {
-  static imageOffsetX = MAP_ENUMS.INITIAL_MAP_POSITION_X;
-  static imageOffsetY = MAP_ENUMS.INITIAL_MAP_POSITION_Y;
+  static imageOffsetX: number;
+  static imageOffsetY: number;
 
   static sprite = new Sprite(firstOfficeMapForegroundImage);
 
   static async init() {
     await this.sprite.init();
-    this.draw();
+    this.imageOffsetX = Map.initialImageOffsetX;
+    this.imageOffsetY = Map.initialImageOffsetY;
   }
 
   static draw() {

@@ -4,12 +4,26 @@ import { MAP_ENUMS } from "./enums";
 import { Sprite } from "../sprite";
 
 export class Map {
-  static imageOffsetX = MAP_ENUMS.INITIAL_MAP_POSITION_X;
-  static imageOffsetY = MAP_ENUMS.INITIAL_MAP_POSITION_Y;
+  static initialImageOffsetX: number;
+  static initialImageOffsetY: number;
+  static imageOffsetX: number;
+  static imageOffsetY: number;
   static sprite = new Sprite(firstOfficeMapImage);
 
-  static init() {
-    return this.sprite.init();
+  static async init() {
+    await this.sprite.init();
+
+    Map.initialImageOffsetX =
+      Canvas.getCanvas().width / 2 -
+      (this.sprite.getImage().width / 2 + MAP_ENUMS.TILE_SIZE);
+
+    Map.initialImageOffsetY =
+      Canvas.getCanvas().height / 2 -
+      (this.sprite.getImage().height / 2 +
+        MAP_ENUMS.STARTING_POINT_Y_OFFSET_FROM_TOP_OF_MAP);
+
+    Map.imageOffsetX = Map.initialImageOffsetX;
+    Map.imageOffsetY = Map.initialImageOffsetY;
   }
 
   static draw() {

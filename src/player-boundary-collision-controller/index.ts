@@ -3,6 +3,7 @@ import { BoundaryController } from "../boundary-controller";
 import { Boundary } from "../boundary";
 import { MAP_ENUMS } from "../map/enums";
 import { Collision } from "../collision";
+import { Map } from "../map";
 
 export class PlayerBoundaryCollisionController {
   // playerDirection is required to predict the next user position during the movement
@@ -13,8 +14,8 @@ export class PlayerBoundaryCollisionController {
       if (
         Collision.rectangularCollision(
           {
-            x: Player.x + playerDirection[0] - MAP_ENUMS.INITIAL_MAP_POSITION_X,
-            y: Player.y + playerDirection[1] - MAP_ENUMS.INITIAL_MAP_POSITION_Y,
+            x: Player.x + playerDirection[0] - Map.initialImageOffsetX,
+            y: Player.y + playerDirection[1] - Map.initialImageOffsetY,
             width: Player.SINGLE_PRESET_WIDTH,
             height: Player.sprite.getImage().height,
           },
