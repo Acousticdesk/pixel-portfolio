@@ -2,6 +2,7 @@ import { NPCController } from "../npc-controller";
 import { NPC } from "../npc";
 import { NPC_IMAGES } from "../npc/consts";
 import { CompanionDecorator } from "../npc/decorators";
+import { Map } from "../map";
 
 export class MapNPCController {
   static npcsOnMap: Record<string, NPCController> = {};
@@ -9,7 +10,10 @@ export class MapNPCController {
 
   static async init() {
     const map1NPCController = new NPCController();
-    const map1ReceptionistNPC = new NPC({ x: 820, y: 135 });
+    const map1ReceptionistNPC = new NPC({
+      x: Map.initialImageOffsetX + 655,
+      y: Map.initialImageOffsetY + 435,
+    });
     const map1ReceptionistNPCCompanion = new CompanionDecorator(
       map1ReceptionistNPC,
       1816
