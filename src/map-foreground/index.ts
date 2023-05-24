@@ -1,30 +1,24 @@
 import firstOfficeMapForegroundImage from "./assets/images/first-office-foreground.png";
 import { Canvas } from "../canvas";
 import { MAP_ENUMS } from "../map/enums";
+import { Sprite } from "../sprite";
 
-// TODO akicha: create a Sprite class
 export class MapForeground {
   static mapForeground: HTMLImageElement;
 
   static imageOffsetX = MAP_ENUMS.INITIAL_MAP_POSITION_X;
   static imageOffsetY = MAP_ENUMS.INITIAL_MAP_POSITION_Y;
 
-  static init() {
-    return new Promise<void>((resolve, reject) => {
-      const mapForeground = new Image();
-      mapForeground.src = firstOfficeMapForegroundImage;
-      MapForeground.mapForeground = mapForeground;
-      mapForeground.onload = function handleImageLoaded() {
-        MapForeground.draw();
-        resolve();
-      };
-      mapForeground.onerror = reject;
-    });
+  static sprite = new Sprite(firstOfficeMapForegroundImage);
+
+  static async init() {
+    await this.sprite.init();
+    this.draw();
   }
 
   static draw() {
     Canvas.getCtx().drawImage(
-      MapForeground.mapForeground,
+      this.sprite.getImage(),
       MapForeground.imageOffsetX,
       MapForeground.imageOffsetY
     );

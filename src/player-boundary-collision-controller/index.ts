@@ -16,7 +16,7 @@ export class PlayerBoundaryCollisionController {
             x: Player.x + playerDirection[0] - MAP_ENUMS.INITIAL_MAP_POSITION_X,
             y: Player.y + playerDirection[1] - MAP_ENUMS.INITIAL_MAP_POSITION_Y,
             width: Player.SINGLE_PRESET_WIDTH,
-            height: Player.playerImage.height,
+            height: Player.sprite.getImage().height,
           },
           {
             x: boundary.getX(),
