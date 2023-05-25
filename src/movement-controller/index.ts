@@ -8,29 +8,25 @@ import { MovablesController } from "../movables-controller";
 
 export class MovementController {
   static updatePlayerDirection() {
-    if (Keyboard.keys.w.pressed) {
-      Player.setMovementDirection(PLAYER_ENUMS.MOVEMENT_DIRECTION_UP);
-      Player.startMoving();
+    const keyToDirectionMap: {
+      [key: string]:
+        | PLAYER_ENUMS.MOVEMENT_DIRECTION_UP
+        | PLAYER_ENUMS.MOVEMENT_DIRECTION_DOWN
+        | PLAYER_ENUMS.MOVEMENT_DIRECTION_LEFT
+        | PLAYER_ENUMS.MOVEMENT_DIRECTION_RIGHT;
+    } = {
+      w: PLAYER_ENUMS.MOVEMENT_DIRECTION_UP,
+      s: PLAYER_ENUMS.MOVEMENT_DIRECTION_DOWN,
+      a: PLAYER_ENUMS.MOVEMENT_DIRECTION_LEFT,
+      d: PLAYER_ENUMS.MOVEMENT_DIRECTION_RIGHT,
+    };
+
+    if (!Keyboard.lastPressed || !keyToDirectionMap[Keyboard.lastPressed]) {
       return;
     }
 
-    if (Keyboard.keys.s.pressed) {
-      Player.setMovementDirection(PLAYER_ENUMS.MOVEMENT_DIRECTION_DOWN);
-      Player.startMoving();
-      return;
-    }
-
-    if (Keyboard.keys.a.pressed) {
-      Player.setMovementDirection(PLAYER_ENUMS.MOVEMENT_DIRECTION_LEFT);
-      Player.startMoving();
-      return;
-    }
-
-    if (Keyboard.keys.d.pressed) {
-      Player.setMovementDirection(PLAYER_ENUMS.MOVEMENT_DIRECTION_RIGHT);
-      Player.startMoving();
-      return;
-    }
+    Player.setMovementDirection(keyToDirectionMap[Keyboard.lastPressed]);
+    Player.startMoving();
   }
   static move() {
     const velocity = PLAYER_ENUMS.MOVEMENT_VELOCITY;
