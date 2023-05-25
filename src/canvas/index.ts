@@ -11,7 +11,6 @@ export class Canvas {
     Canvas.setFullScreenSize();
   }
 
-  // TODO akicha: track window resize event and change the size accordingly
   private static setFullScreenSize() {
     if (!Canvas.canvas) {
       return false;
