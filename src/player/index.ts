@@ -1,4 +1,4 @@
-import playerMovementSprite from "./assets/images/Alex_run_16x16.png";
+import playerMovementSprite from "./assets/images/Alex_run_32x32.png";
 import { PLAYER_ENUMS } from "./enums";
 import { Canvas } from "../canvas";
 import { PLAYER_CONSTS } from "./consts";
@@ -24,6 +24,7 @@ export class Player {
 
     const playerImage = this.sprite.getImage();
 
+    // todo akicha: can be a part of the Sprite class
     Player.SINGLE_PRESET_WIDTH =
       playerImage.width / PLAYER_ENUMS.NUMBER_OF_MOVEMENT_SPRITE_PRESETS;
 
