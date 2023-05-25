@@ -7,17 +7,41 @@ import { Player } from "../player";
 import { MovablesController } from "../movables-controller";
 
 export class MovementController {
+  static updatePlayerDirection() {
+    if (Keyboard.keys.w.pressed) {
+      Player.setMovementDirection(PLAYER_ENUMS.MOVEMENT_DIRECTION_UP);
+      Player.startMoving();
+      return;
+    }
+
+    if (Keyboard.keys.s.pressed) {
+      Player.setMovementDirection(PLAYER_ENUMS.MOVEMENT_DIRECTION_DOWN);
+      Player.startMoving();
+      return;
+    }
+
+    if (Keyboard.keys.a.pressed) {
+      Player.setMovementDirection(PLAYER_ENUMS.MOVEMENT_DIRECTION_LEFT);
+      Player.startMoving();
+      return;
+    }
+
+    if (Keyboard.keys.d.pressed) {
+      Player.setMovementDirection(PLAYER_ENUMS.MOVEMENT_DIRECTION_RIGHT);
+      Player.startMoving();
+      return;
+    }
+  }
   static move() {
     const velocity = PLAYER_ENUMS.MOVEMENT_VELOCITY;
 
     Player.stopMoving();
+    MovementController.updatePlayerDirection();
 
     if (
       Keyboard.keys.w.pressed &&
       !PlayerBoundaryCollisionController.isCollisionDetected([0, -velocity])
     ) {
-      Player.setMovementDirection(PLAYER_ENUMS.MOVEMENT_DIRECTION_UP);
-      Player.startMoving();
       Map.setImageOffsetY(Map.imageOffsetY + velocity);
       MapForeground.setImageOffsetY(MapForeground.imageOffsetY + velocity);
       MovablesController.move((movable) => {
@@ -31,8 +55,6 @@ export class MovementController {
         velocity as number,
       ])
     ) {
-      Player.setMovementDirection(PLAYER_ENUMS.MOVEMENT_DIRECTION_DOWN);
-      Player.startMoving();
       Map.setImageOffsetY(Map.imageOffsetY - velocity);
       MapForeground.setImageOffsetY(MapForeground.imageOffsetY - velocity);
       MovablesController.move((movable) => {
@@ -43,8 +65,6 @@ export class MovementController {
       Keyboard.keys.a.pressed &&
       !PlayerBoundaryCollisionController.isCollisionDetected([-velocity, 0])
     ) {
-      Player.setMovementDirection(PLAYER_ENUMS.MOVEMENT_DIRECTION_LEFT);
-      Player.startMoving();
       Map.setImageOffsetX(Map.imageOffsetX + velocity);
       MapForeground.setImageOffsetX(MapForeground.imageOffsetX + velocity);
       MovablesController.move((movable) => {
@@ -58,8 +78,6 @@ export class MovementController {
         0,
       ])
     ) {
-      Player.setMovementDirection(PLAYER_ENUMS.MOVEMENT_DIRECTION_RIGHT);
-      Player.startMoving();
       Map.setImageOffsetX(Map.imageOffsetX - velocity);
       MapForeground.setImageOffsetX(MapForeground.imageOffsetX - velocity);
       MovablesController.move((movable) => {
