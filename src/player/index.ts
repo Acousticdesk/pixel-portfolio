@@ -14,7 +14,7 @@ export class Player {
     | PLAYER_ENUMS.MOVEMENT_DIRECTION_DOWN
     | PLAYER_ENUMS.MOVEMENT_DIRECTION_LEFT =
     PLAYER_ENUMS.MOVEMENT_DIRECTION_DOWN;
-  static currentMovementSpriteIndex = 0;
+  static currentMovementSpriteIndex = PLAYER_CONSTS.MOVING_DOWN_SPRITE_INDEX[0];
   static isMoving = false;
   static lastMovementSpriteChange = Date.now();
   static sprite = new Sprite(playerMovementSprite);

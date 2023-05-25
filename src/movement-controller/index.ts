@@ -9,7 +9,7 @@ import { MovablesController } from "../movables-controller";
 export class MovementController {
   static updatePlayerDirection() {
     const keyToDirectionMap: {
-      [key: string]:
+      [key: keyof typeof Keyboard.keys]:
         | PLAYER_ENUMS.MOVEMENT_DIRECTION_UP
         | PLAYER_ENUMS.MOVEMENT_DIRECTION_DOWN
         | PLAYER_ENUMS.MOVEMENT_DIRECTION_LEFT
