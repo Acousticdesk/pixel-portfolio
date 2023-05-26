@@ -13,6 +13,8 @@ import { DialogAreaController } from "./dialog-area-controller";
 import { NPCDialogController } from "./npc-dialog-controller";
 import { MovablesController } from "./movables-controller";
 
+// todo akicha: add dialogs for communication w/ NPC, use Press Start 2P font, animate text rendering,
+//  add dialog windows, add dialog controls
 function animate() {
   Canvas.resetCanvas();
   MovementController.move();
