@@ -4,6 +4,8 @@ import { NPC_IMAGES } from "../npc/consts";
 import { CompanionDecorator } from "../npc/decorators";
 import { Map } from "../map";
 import { MAP_NPC_CONTROLLER_ENUMS } from "./enums";
+import { Phrases } from "../phrases";
+import dialogTexts from "../dialog-texts";
 
 export class MapNPCController {
   static npcsOnMap: Record<string, NPCController> = {};
@@ -21,7 +23,8 @@ export class MapNPCController {
     });
     const map1ReceptionistNPCCompanion = new CompanionDecorator(
       map1ReceptionistNPC,
-      1816
+      1816,
+      new Phrases(dialogTexts["map-1"]["npc-1"])
     );
     await map1ReceptionistNPCCompanion.init(
       NPC_IMAGES.MAP_1_RECEPTIONIST_NPC_IMAGE

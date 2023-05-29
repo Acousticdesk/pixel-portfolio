@@ -1,12 +1,10 @@
 import { NPC_DIALOG_UI_CONTROLLER_ENUMS } from "./enums";
 
 export class NpcDialogUiController {
-  private static handleDialogShow() {
+  static handleDialogShow(text: string) {
     NpcDialogUiController.showDialog();
     NpcDialogUiController.showBackdrop();
-    NpcDialogUiController.animateText(
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    );
+    NpcDialogUiController.animateText(text);
   }
 
   private static handleDialogHide() {
@@ -14,10 +12,12 @@ export class NpcDialogUiController {
     NpcDialogUiController.hideBackdrop();
   }
 
+  private static isAnimationInProgress = false;
+
   static init() {
-    document
-      .querySelector<HTMLButtonElement>("#test_dialog")
-      ?.addEventListener("click", NpcDialogUiController.handleDialogShow);
+    // document
+    //   .querySelector<HTMLButtonElement>("#test_dialog")
+    //   ?.addEventListener("click", NpcDialogUiController.handleDialogShow);
 
     document
       .querySelector(NPC_DIALOG_UI_CONTROLLER_ENUMS.CONFIRM_UI_SELECTOR)
@@ -37,7 +37,7 @@ export class NpcDialogUiController {
 
     return element;
   }
-  static showDialog() {
+  private static showDialog() {
     const element = NpcDialogUiController.getDialogElement();
     element.hidden = false;
   }
@@ -70,7 +70,7 @@ export class NpcDialogUiController {
     return element;
   }
 
-  static showBackdrop() {
+  private static showBackdrop() {
     const element = NpcDialogUiController.getBackdropElement();
     element.hidden = false;
 
@@ -80,12 +80,12 @@ export class NpcDialogUiController {
     }, 0);
   }
 
-  static hideDialog() {
+  private static hideDialog() {
     const element = NpcDialogUiController.getDialogElement();
     element.hidden = true;
   }
 
-  static hideBackdrop() {
+  private static hideBackdrop() {
     const element = NpcDialogUiController.getBackdropElement();
     element.classList.remove("visible");
 
@@ -94,7 +94,13 @@ export class NpcDialogUiController {
     }, 200);
   }
 
-  static animateText(text: string, charIndex = 0) {
+  private static animateText(text: string, charIndex = 0) {
+    if (NpcDialogUiController.isAnimationInProgress) {
+      return;
+    }
+
+    NpcDialogUiController.isAnimationInProgress = true;
+
     const element = NpcDialogUiController.getContentElement();
     element.textContent = "";
 
@@ -104,6 +110,7 @@ export class NpcDialogUiController {
         charIndex += 1;
       } else {
         window.clearInterval(intervalId);
+        NpcDialogUiController.isAnimationInProgress = false;
       }
     }, NPC_DIALOG_UI_CONTROLLER_ENUMS.TEXT_ANIMATION_THROTTLE_RATE_MS);
   }

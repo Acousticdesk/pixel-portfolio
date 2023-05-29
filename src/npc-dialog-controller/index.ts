@@ -2,6 +2,8 @@ import { PlayerDialogAreaCollisionController } from "../player-dialog-area-colli
 import { MapNPCController } from "../map-npc-controller";
 import { CompanionDecorator } from "../npc/decorators";
 import { NPC } from "../npc/interfaces";
+import { Keyboard } from "../keyboard";
+import { NpcDialogUiController } from "../npc-dialog-ui-controller";
 
 export class NPCDialogController {
   static isCompanionNPC(npc: NPC): npc is CompanionDecorator {
@@ -28,6 +30,28 @@ export class NPCDialogController {
     }
 
     companion.allowToTalkTo();
+  }
+
+  static talk() {
+    if (!Keyboard.keys[" "].pressed) {
+      return;
+    }
+
+    const dialogArea = PlayerDialogAreaCollisionController.findCollisionTile();
+
+    if (!dialogArea) {
+      return;
+    }
+
+    const companion = NPCDialogController.findCompanionResponsibleForDialogArea(
+      dialogArea.value
+    );
+
+    if (!companion) {
+      return;
+    }
+
+    NpcDialogUiController.handleDialogShow(companion.getPhrases().getPhrase(0));
   }
 
   private static findCompanionResponsibleForDialogArea(dialogAreaId: number) {

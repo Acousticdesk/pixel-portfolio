@@ -4,6 +4,7 @@ import { COMPANION_DECORATOR_ENUMS } from "./enums";
 import { NPC } from "../interfaces";
 import { Companion } from "./interfaces";
 import { Movable } from "../../movables-controller/interfaces";
+import { Phrases } from "../../phrases";
 
 export class CompanionDecorator implements NPC, Companion {
   private npc: NPC & Movable;
@@ -15,13 +16,15 @@ export class CompanionDecorator implements NPC, Companion {
   private canSpeak = false;
   // this property is used to find the closes CompanionNPC when user collides with
   private dialogAreaId = 0;
-  constructor(npc: NPC & Movable, dialogAreaId: number) {
+  private readonly phrases: Phrases;
+  constructor(npc: NPC & Movable, dialogAreaId: number, phrases: Phrases) {
     this.npc = npc;
     this.interactionIconX = this.npc.getX();
     this.interactionIconY =
       this.npc.getY() +
       COMPANION_DECORATOR_ENUMS.DIALOG_INTERACTION_ICON_OFFSET_Y;
     this.dialogAreaId = dialogAreaId;
+    this.phrases = phrases;
   }
   async init(base64String: string) {
     this.interactionIcon = new Image();
@@ -97,5 +100,9 @@ export class CompanionDecorator implements NPC, Companion {
 
   getDialogAreaId() {
     return this.dialogAreaId;
+  }
+
+  getPhrases() {
+    return this.phrases;
   }
 }

@@ -18,13 +18,16 @@ import { NpcDialogUiController } from "./npc-dialog-ui-controller";
 //  add dialog windows, add dialog controls
 
 // todo akicha: add onboarding
+// todo akicha: add npc with feedbacks about work
 function animate() {
   Canvas.resetCanvas();
   MovementController.move();
   Map.draw();
   BoundaryController.draw();
   DialogAreaController.draw();
+  // todo akicha: find a more meaningful naming
   NPCDialogController.trySpeakToAnyone();
+  NPCDialogController.talk();
   Player.move();
   Player.draw();
   MapNPCController.selectNPCsOnCurrentMap().updateIdlingPosition().draw();

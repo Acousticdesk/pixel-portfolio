@@ -12,6 +12,9 @@ export class Keyboard {
     d: {
       pressed: false,
     },
+    " ": {
+      pressed: false,
+    },
   };
   static lastPressed: string | null = null;
   static handleKeyUp = function handleKeyUp(e: KeyboardEvent) {
