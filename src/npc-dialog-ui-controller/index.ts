@@ -57,7 +57,7 @@ export class NpcDialogUiController {
   }
 
   private static getContentElement() {
-    const element = document.querySelector<HTMLDivElement>(
+    const element = document.querySelector<HTMLPreElement>(
       NPC_DIALOG_UI_CONTROLLER_ENUMS.CONTENT_UI_SELECTOR
     );
 
