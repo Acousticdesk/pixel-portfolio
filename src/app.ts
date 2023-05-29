@@ -12,6 +12,7 @@ import { MapNPCController } from "./map-npc-controller";
 import { DialogAreaController } from "./dialog-area-controller";
 import { NPCDialogController } from "./npc-dialog-controller";
 import { MovablesController } from "./movables-controller";
+import { NpcDialogUiController } from "./npc-dialog-ui-controller";
 
 // todo akicha: add dialogs for communication w/ NPC, use Press Start 2P font, animate text rendering,
 //  add dialog windows, add dialog controls
@@ -67,6 +68,8 @@ export async function main() {
   MovablesController.registerCollection({
     getItems: () => DialogAreaController.getDialogAreas(),
   });
+
+  NpcDialogUiController.init();
 
   Canvas.init();
   await Map.init();
