@@ -116,4 +116,8 @@ export class InteractableDecorator {
   // getPhrases() {
   //   return this.phrases;
   // }
+
+  getSubject() {
+    return this.subject;
+  }
 }

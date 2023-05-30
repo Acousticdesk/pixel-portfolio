@@ -49,15 +49,24 @@ export class NPCDialogController {
       return;
     }
 
-    const companion = NPCDialogController.findCompanionResponsibleForDialogArea(
-      dialogArea.value
-    );
+    const interactable =
+      NPCDialogController.findCompanionResponsibleForDialogArea(
+        dialogArea.value
+      );
 
-    if (!companion || !NPCDialogController.isCompanionNPC(companion)) {
+    if (!interactable) {
       return;
     }
 
-    NpcDialogUiController.handleDialogShow(companion.getPhrases().getPhrase(0));
+    const interactionSubject = interactable.getSubject();
+
+    if (!NPCDialogController.isCompanionNPC(interactionSubject)) {
+      return;
+    }
+
+    NpcDialogUiController.handleDialogShow(
+      interactionSubject.getPhrases().getPhrase(0)
+    );
   }
 
   private static findCompanionResponsibleForDialogArea(dialogAreaId: number) {
