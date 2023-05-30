@@ -6,6 +6,7 @@ import { Map } from "../map";
 import { MAP_NPC_CONTROLLER_ENUMS } from "./enums";
 import { Phrases } from "../phrases";
 import dialogTexts from "../dialog-texts";
+import { InteractableDecorator } from "../interactable/decorators";
 
 export class MapNPCController {
   static npcsOnMap: Record<string, NPCController> = {};
@@ -13,7 +14,7 @@ export class MapNPCController {
 
   static async init() {
     const map1NPCController = new NPCController();
-    const map1ReceptionistNPC = new NPC({
+    const map1ReceptionistNpc = new NPC({
       x:
         Map.initialImageOffsetX +
         MAP_NPC_CONTROLLER_ENUMS.MAP_1_RECEPTIONIST_OFFSET_X,
@@ -21,16 +22,19 @@ export class MapNPCController {
         Map.initialImageOffsetY +
         MAP_NPC_CONTROLLER_ENUMS.MAP_1_RECEPTIONIST_OFFSET_Y,
     });
-    const map1ReceptionistNPCCompanion = new CompanionDecorator(
-      map1ReceptionistNPC,
-      1816,
+    // todo akicha 1:
+    const map1Npc1Interactable = new InteractableDecorator(
+      // @ts-ignore
+      map1ReceptionistNpc,
+      1816
+    );
+    const map1Npc1Companion = new CompanionDecorator(
+      map1Npc1Interactable,
       new Phrases(dialogTexts["map-1"]["npc-1"])
     );
-    await map1ReceptionistNPCCompanion.init(
-      NPC_IMAGES.MAP_1_RECEPTIONIST_NPC_IMAGE
-    );
+    await map1Npc1Companion.init(NPC_IMAGES.MAP_1_RECEPTIONIST_NPC_IMAGE);
 
-    map1NPCController.addNPC(map1ReceptionistNPCCompanion);
+    map1NPCController.addNPC(map1Npc1Companion);
 
     MapNPCController.npcsOnMap["map-1"] = map1NPCController;
   }

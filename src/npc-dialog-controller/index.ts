@@ -4,9 +4,15 @@ import { CompanionDecorator } from "../npc/decorators";
 import { NPC } from "../npc/interfaces";
 import { Keyboard } from "../keyboard";
 import { NpcDialogUiController } from "../npc-dialog-ui-controller";
+import { InteractableDecorator } from "../interactable/decorators";
 
+// todo akicha 1: rename to interaction-controller
 export class NPCDialogController {
-  static isCompanionNPC(npc: NPC): npc is CompanionDecorator {
+  // todo akicha 1: not only Npc can be interactable
+  private static isInteractableNPC(npc: NPC): npc is InteractableDecorator {
+    return npc instanceof InteractableDecorator;
+  }
+  private static isCompanionNPC(npc: NPC): npc is CompanionDecorator {
     return npc instanceof CompanionDecorator;
   }
   static trySpeakToAnyone() {
@@ -14,8 +20,8 @@ export class NPCDialogController {
 
     MapNPCController.selectNPCsOnCurrentMap()
       .getNPCs()
-      .filter(NPCDialogController.isCompanionNPC)
-      .forEach((npc) => npc.restrictToTalkTo());
+      .filter(NPCDialogController.isInteractableNPC)
+      .forEach((npc) => npc.restrictToInteractWith());
 
     if (!dialogArea) {
       return;
@@ -29,7 +35,7 @@ export class NPCDialogController {
       return;
     }
 
-    companion.allowToTalkTo();
+    companion.allowToInteractWith();
   }
 
   static talk() {
@@ -47,7 +53,7 @@ export class NPCDialogController {
       dialogArea.value
     );
 
-    if (!companion) {
+    if (!companion || !NPCDialogController.isCompanionNPC(companion)) {
       return;
     }
 
@@ -57,10 +63,10 @@ export class NPCDialogController {
   private static findCompanionResponsibleForDialogArea(dialogAreaId: number) {
     const companions = MapNPCController.selectNPCsOnCurrentMap()
       .getNPCs()
-      .filter(NPCDialogController.isCompanionNPC);
+      .filter(NPCDialogController.isInteractableNPC);
 
     return companions.find(
-      (companion) => companion.getDialogAreaId() === dialogAreaId
+      (companion) => companion.getInteractionAreaId() === dialogAreaId
     );
   }
 }
