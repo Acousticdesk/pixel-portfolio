@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/styles/main.css">
     <link rel="stylesheet" href="../src/styles/npc-dialog.css">
+    <link rel="stylesheet" href="../src/styles/onboarding.css">
 </head>
 <body>
     <canvas id="canvas"></canvas>
@@ -22,6 +23,27 @@
             <button hidden class="npc-dialog__confirm">OK</button>
         </div>
     </div>
+    
+    <div class="onboarding">
+        <div class="onboarding__container">
+            <div>
+                <h4 class="onboarding__hint">Move</h4>
+                <div class="onboarding__button-container">
+                    <button class="onboarding__button onboarding__button--w">w</button>
+                </div>
+                <div class="onboarding__button-container">
+                    <button class="onboarding__button">a</button>
+                    <button class="onboarding__button">s</button>
+                    <button class="onboarding__button">d</button>
+                </div>
+            </div>
+            <div>
+                <h4 class="onboarding__hint">Action</h4>
+                <button class="onboarding__button--space">Space</button>
+            </div>
+        </div>
+    </div>
+    <div class="onboarding__backdrop"></div>
     <script src="../dist/bundle.js"></script>
 </body>
 </html>
