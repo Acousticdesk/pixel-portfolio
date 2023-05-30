@@ -21,6 +21,8 @@ import { Onboarding } from "./onboarding";
 // todo akicha: add onboarding
 // todo akicha: add npc with feedbacks about work
 // todo akicha: add interaction with bookshelf about the books read
+
+// todo akicha: create a interactable class that may include npcs and objects
 function animate() {
   Canvas.resetCanvas();
   MovementController.move();
