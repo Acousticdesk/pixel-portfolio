@@ -15,13 +15,15 @@ export class NpcDialogUiController {
   private static isAnimationInProgress = false;
 
   static init() {
-    // document
-    //   .querySelector<HTMLButtonElement>("#test_dialog")
-    //   ?.addEventListener("click", NpcDialogUiController.handleDialogShow);
-
     document
       .querySelector(NPC_DIALOG_UI_CONTROLLER_ENUMS.CONFIRM_UI_SELECTOR)
       ?.addEventListener("click", NpcDialogUiController.handleDialogHide);
+
+    document.body.addEventListener("keyup", (e) => {
+      if (["Escape", "Enter"].includes(e.key)) {
+        NpcDialogUiController.handleDialogHide();
+      }
+    });
   }
 
   private static getDialogElement() {
