@@ -65,3 +65,9 @@
 .onboarding__hint {
     text-align: center;
 }
+
+@media screen and (max-width: 767px) {
+    .onboarding, .onboarding__backdrop {
+        display: none;
+    }
+}

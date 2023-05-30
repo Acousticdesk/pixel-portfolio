@@ -4,6 +4,10 @@ html, body {
     font-family: 'Press Start 2P', cursive;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 button {
     font-family: 'Press Start 2P', cursive;
     background: #fff;
