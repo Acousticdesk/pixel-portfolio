@@ -7,6 +7,7 @@ import { MAP_NPC_CONTROLLER_ENUMS } from "./enums";
 import { Phrases } from "../phrases";
 import dialogTexts from "../dialog-texts";
 import { InteractableDecorator } from "../interactable/decorators";
+import { ObjectOnMap } from "../object-on-map";
 
 // todo akicha: rename to MapInteractableController
 export class MapNPCController {
@@ -37,11 +38,49 @@ export class MapNPCController {
 
     map1NPCController.addNPC(map1Npc1Interactable);
 
-    MapNPCController.npcsOnMap["map-1"] = map1NPCController;
-  }
+    // todo akicha 1: fix the issue with the tile position when the window is resized
+    const map1Computer1 = new ObjectOnMap({
+      x:
+        Map.initialImageOffsetX +
+        MAP_NPC_CONTROLLER_ENUMS.MAP_1_COMPUTER_1_OFFSET_X,
+      y:
+        Map.initialImageOffsetY +
+        MAP_NPC_CONTROLLER_ENUMS.MAP_1_COMPUTER_1_OFFSET_Y,
+    });
 
-  static selectMap(mapName: "map-1") {
-    MapNPCController.currentMap = mapName;
+    // todo akicha 1: add interaction tile ids to enums
+    const map1Computer1Interactable = new InteractableDecorator(
+      // @ts-ignore
+      map1Computer1,
+      1817
+    );
+
+    await map1Computer1Interactable.init("");
+
+    map1NPCController.addNPC(map1Computer1Interactable);
+
+    // todo akicha 1: fix the issue with the tile position when the window is resized
+    const map1Computer2 = new ObjectOnMap({
+      x:
+        Map.initialImageOffsetX +
+        MAP_NPC_CONTROLLER_ENUMS.MAP_1_COMPUTER_2_OFFSET_X,
+      y:
+        Map.initialImageOffsetY +
+        MAP_NPC_CONTROLLER_ENUMS.MAP_1_COMPUTER_2_OFFSET_Y,
+    });
+
+    // todo akicha 1: add interaction tile ids to enums
+    const map1Computer2Interactable = new InteractableDecorator(
+      // @ts-ignore
+      map1Computer2,
+      1818
+    );
+
+    await map1Computer2Interactable.init("");
+
+    map1NPCController.addNPC(map1Computer2Interactable);
+
+    MapNPCController.npcsOnMap["map-1"] = map1NPCController;
   }
 
   static selectNPCsOnCurrentMap() {

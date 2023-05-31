@@ -12,6 +12,7 @@ export class Boundary implements InteractionTile, Movable {
     this.x = x;
     this.y = y;
   }
+  // todo akicha: remove position offset from the draw method
   draw() {
     const ctx = Canvas.getCtx();
 

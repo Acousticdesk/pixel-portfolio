@@ -30,6 +30,7 @@ export class InteractableDecorator {
     this.interactionAreaId = interactionAreaId;
     // this.phrases = phrases;
   }
+  // todo akicha 1: base64 string is optional
   async init(base64String: string) {
     this.interactionIcon = new Image();
     // todo akicha: make icon configurable
