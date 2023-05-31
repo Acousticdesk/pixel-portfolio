@@ -8,6 +8,7 @@ import { Phrases } from "../phrases";
 import dialogTexts from "../dialog-texts";
 import { InteractableDecorator } from "../interactable/decorators";
 
+// todo akicha: rename to MapInteractableController
 export class MapNPCController {
   static npcsOnMap: Record<string, NPCController> = {};
   static currentMap = "map-1";

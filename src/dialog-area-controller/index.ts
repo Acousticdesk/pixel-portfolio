@@ -1,5 +1,6 @@
 import { DialogArea } from "../dialog-area";
 
+// todo akicha: rename to InteractionAreaController
 export class DialogAreaController {
   static dialogAreas: DialogArea[];
 

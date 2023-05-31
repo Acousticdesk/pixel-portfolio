@@ -3,6 +3,7 @@ import { MAP_ENUMS } from "../map/enums";
 import { InteractionTile } from "../interaction-tile";
 import { Movable } from "../movables-controller/interfaces";
 
+// todo akicha 1: rename to Interaction Area
 export class DialogArea implements InteractionTile, Movable {
   x: number;
   y: number;
