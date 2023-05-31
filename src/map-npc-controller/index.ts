@@ -10,6 +10,7 @@ import { InteractableDecorator } from "../interactable/decorators";
 import { ObjectOnMap } from "../object-on-map";
 import { DialogsController } from "../dialogs-controller";
 import { project1Template } from "../projects/templates/project-1";
+import { project2Template } from "../projects/templates/project-2";
 
 // todo akicha: rename to MapInteractableController
 export class MapNPCController {
@@ -89,7 +90,7 @@ export class MapNPCController {
       1818,
       () => {
         DialogsController.getDialog("markup-dialog").handleDialogShow(
-          project1Template
+          project2Template
         );
       }
     );
