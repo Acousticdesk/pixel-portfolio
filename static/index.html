@@ -17,11 +17,20 @@
 <body>
     <canvas id="canvas"></canvas>
     <!--  todo akicha: add pug template engine  -->
-    <div class="npc-dialog__container">
-        <div hidden class="npc-dialog__backdrop"></div>
-        <div hidden class="npc-dialog">
+    <!--  todo akicha: rename to text-dialog  -->
+    <div class="dialog__container">
+        <div id="text_dialog_backdrop" hidden class="dialog__backdrop"></div>
+        <div id="text_dialog" hidden class="dialog">
             <pre class="npc-dialog__content"></pre>
-            <button hidden class="npc-dialog__confirm">OK</button>
+            <button id="text_dialog_confirm" hidden class="dialog__confirm">OK</button>
+        </div>
+    </div>
+    
+    <div class="dialog__container">
+        <div id="markup_dialog_backdrop" hidden class="dialog__backdrop"></div>
+        <div id="markup_dialog" hidden class="dialog">
+            <pre class="markup-dialog__content"></pre>
+            <button id="markup_dialog_confirm" hidden class="dialog__confirm">OK</button>
         </div>
     </div>
     

@@ -14,6 +14,9 @@ import { NPCDialogController } from "./npc-dialog-controller";
 import { MovablesController } from "./movables-controller";
 import { NpcDialogUiController } from "./npc-dialog-ui-controller";
 import { Onboarding } from "./onboarding";
+import { DialogsController } from "./dialogs-controller";
+import { TextDialogImplementation } from "./npc-dialog-ui-controller/implementations/text-dialog";
+import { MarkupDialogImplementation } from "./npc-dialog-ui-controller/implementations/markup-dialog";
 
 // todo akicha: add dialogs for communication w/ NPC, use Press Start 2P font, animate text rendering,
 //  add dialog windows, add dialog controls
@@ -76,7 +79,16 @@ export async function main() {
     getItems: () => DialogAreaController.getDialogAreas(),
   });
 
-  NpcDialogUiController.init();
+  DialogsController.registerDialog(
+    "text-dialog",
+    new NpcDialogUiController(new TextDialogImplementation())
+  );
+
+  DialogsController.registerDialog(
+    "markup-dialog",
+    new NpcDialogUiController(new MarkupDialogImplementation())
+  );
+
   Onboarding.init();
 
   Canvas.init();

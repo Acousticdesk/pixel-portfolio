@@ -8,7 +8,8 @@ import { Phrases } from "../phrases";
 import dialogTexts from "../dialog-texts";
 import { InteractableDecorator } from "../interactable/decorators";
 import { ObjectOnMap } from "../object-on-map";
-import { NpcDialogUiController } from "../npc-dialog-ui-controller";
+import { DialogsController } from "../dialogs-controller";
+import { project1Template } from "../projects/templates/project-1";
 
 // todo akicha: rename to MapInteractableController
 export class MapNPCController {
@@ -38,7 +39,7 @@ export class MapNPCController {
         const npcPhrase = (self.getSubject() as CompanionDecorator)
           .getPhrases()
           .getPhrase(0);
-        NpcDialogUiController.handleDialogShow(npcPhrase);
+        DialogsController.getDialog("text-dialog").handleDialogShow(npcPhrase);
       }
     );
     await map1Npc1Interactable.init(NPC_IMAGES.MAP_1_RECEPTIONIST_NPC_IMAGE);
@@ -61,7 +62,9 @@ export class MapNPCController {
       map1Computer1,
       1817,
       () => {
-        NpcDialogUiController.handleDialogShow("Hello World!");
+        DialogsController.getDialog("markup-dialog").handleDialogShow(
+          project1Template
+        );
       }
     );
 
@@ -85,7 +88,9 @@ export class MapNPCController {
       map1Computer2,
       1818,
       () => {
-        NpcDialogUiController.handleDialogShow("Hello World!");
+        DialogsController.getDialog("markup-dialog").handleDialogShow(
+          project1Template
+        );
       }
     );
 
