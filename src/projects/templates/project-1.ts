@@ -1,15 +1,15 @@
 export const project1Template = `
-  <h4>Position</h4>
+  <h3 class="project__heading">Position</h3>
   <p>FE Team Leader</p>
   <p>Kyiv, Ukraine - 2022 - 2022</p>
-  <h4>Project</h4>
+  <h3 class="project__heading">Project</h3>
   <p>Star</p>
-  <h4>Project description</h4>
+  <h3 class="project__heading">Project description</h3>
   <p>Team performance and feedback review system. This project aimed to enhance team productivity, identify areas for improvement, and foster a culture of continuous growth and development.</p>
-  <h4>Technologies used</h4>
+  <h3 class="project__heading">Technologies used</h3>
   <p>Typescript, React, Redux Toolkit, MUI, Jest, React Testing Library, Sentry, React Intl, Storybook</p>
-  <h4>Responsibilities</h4>
-  <ul>
+  <h3 class="project__heading">Responsibilities</h3>
+  <ul class="project__list">
     <li>Provide leadership and guidance to the front-end development team</li>
     <li>Address performance or behavioral issues proactively, providing necessary support and guidance</li>
     <li>Assign tasks, set priorities, and monitor progress to ensure timely and successful project completion</li>
