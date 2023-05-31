@@ -8,7 +8,6 @@ export class DialogAreaController {
     DialogAreaController.dialogAreas = dialogAreas.map(
       (dialogArea) => new DialogArea(dialogArea)
     );
-    console.log(DialogAreaController.dialogAreas);
   }
 
   static draw() {

@@ -15,12 +15,14 @@ export class InteractableDecorator {
   private canInteract = false;
   // this property is used to find the closes CompanionNPC when user collides with
   private interactionAreaId = 0;
+  private interaction: (self: InteractableDecorator) => void;
   // todo akicha 1: add phrases to the companion decorator
   // private readonly phrases: Phrases;
   // constructor(subject: Movable, interactionAreaId: number, phrases: Phrases) {
   constructor(
     subject: InteractableSubject<string, Promise<void>>,
-    interactionAreaId: number
+    interactionAreaId: number,
+    interaction: (self: InteractableDecorator) => void
   ) {
     this.subject = subject;
     this.interactionIconX = this.subject.getX();
@@ -29,6 +31,7 @@ export class InteractableDecorator {
       INTERACTABLE_DECORATOR_ENUMS.INTERACTION_ICON_OFFSET_Y;
     this.interactionAreaId = interactionAreaId;
     // this.phrases = phrases;
+    this.interaction = interaction;
   }
   // todo akicha 1: base64 string is optional
   async init(base64String: string) {
@@ -120,5 +123,9 @@ export class InteractableDecorator {
 
   getSubject() {
     return this.subject;
+  }
+
+  interact() {
+    this.interaction(this);
   }
 }

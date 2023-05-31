@@ -58,15 +58,7 @@ export class NPCDialogController {
       return;
     }
 
-    const interactionSubject = interactable.getSubject();
-
-    if (!NPCDialogController.isCompanionNPC(interactionSubject)) {
-      return;
-    }
-
-    NpcDialogUiController.handleDialogShow(
-      interactionSubject.getPhrases().getPhrase(0)
-    );
+    interactable.interact();
   }
 
   private static findCompanionResponsibleForDialogArea(dialogAreaId: number) {
