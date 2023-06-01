@@ -4,7 +4,14 @@ import { Drawable } from "../drawable/interfaces";
 import { Initable } from "../initable/interfaces";
 
 export class ObjectOnMap
-  implements Movable, Animatable, Drawable, Initable<string, Promise<void>>
+  implements
+    Movable,
+    Animatable,
+    Drawable,
+    Initable<
+      { src: string; numberOfFrames: number; framesOfInterest: number[] },
+      Promise<void>
+    >
 {
   private x: number;
   private y: number;
@@ -14,7 +21,7 @@ export class ObjectOnMap
     this.y = y;
   }
 
-  init(_: string) {
+  init(_: { src: string; numberOfFrames: number; framesOfInterest: number[] }) {
     return Promise.resolve();
   }
 

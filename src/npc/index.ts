@@ -1,4 +1,3 @@
-import { NPC_ENUMS } from "./enums";
 import { Canvas } from "../canvas";
 import { NPC_CONSTS } from "./consts";
 import { Movable } from "../movables-controller/interfaces";
@@ -9,12 +8,21 @@ import { Initable } from "../initable/interfaces";
 
 // NPC stands for Non-Playable Character
 export class NPC
-  implements Movable, Animatable, Drawable, Initable<string, Promise<void>>
+  implements
+    Movable,
+    Animatable,
+    Drawable,
+    Initable<
+      { src: string; numberOfFrames: number; framesOfInterest: number[] },
+      Promise<void>
+    >
 {
   private x: number;
   private y: number;
   private SINGLE_PRESET_WIDTH?: number;
-  private currentIdleSpriteIndex = NPC_CONSTS.IDLING_DOWN_SPRITE_INDEX[0];
+  // private currentAnimationFrameIndex = NPC_CONSTS.IDLING_DOWN_SPRITE_INDEX[0];
+  private currentAnimationFrameIndex: number = 0;
+  private framesOfInterest: number[] = [];
   private lastIdleSpriteChange = Date.now();
   private sprite!: Sprite;
 
@@ -22,11 +30,20 @@ export class NPC
     this.x = x;
     this.y = y;
   }
-  async init(base64String: string) {
-    this.sprite = new Sprite(base64String);
+
+  // todo akicha 1: create a sprite separately from the initializer
+  async init(
+    { src, numberOfFrames, framesOfInterest } = {
+      src: "",
+      numberOfFrames: 1,
+      framesOfInterest: [] as number[],
+    }
+  ) {
+    this.sprite = new Sprite(src);
     await this.sprite.init();
-    this.SINGLE_PRESET_WIDTH =
-      this.sprite.getImage().width / NPC_ENUMS.NUMBER_OF_IDLE_SPRITE_PRESETS;
+    this.SINGLE_PRESET_WIDTH = this.sprite.getImage().width / numberOfFrames;
+    this.framesOfInterest = framesOfInterest;
+    this.currentAnimationFrameIndex = framesOfInterest[0];
   }
 
   updateAnimationSpriteFrame() {
@@ -36,10 +53,11 @@ export class NPC
     if (idleAnimationShouldThrottle) {
       return;
     }
-    const spriteIndexRange = NPC_CONSTS.IDLING_DOWN_SPRITE_INDEX;
-    this.currentIdleSpriteIndex += 1;
-    if (this.currentIdleSpriteIndex > spriteIndexRange[1]) {
-      this.currentIdleSpriteIndex = spriteIndexRange[0];
+    // const spriteIndexRange = NPC_CONSTS.IDLING_DOWN_SPRITE_INDEX;
+    const spriteIndexRange = this.framesOfInterest;
+    this.currentAnimationFrameIndex += 1;
+    if (this.currentAnimationFrameIndex > spriteIndexRange[1]) {
+      this.currentAnimationFrameIndex = spriteIndexRange[0];
     }
     this.lastIdleSpriteChange = Date.now();
   }
@@ -53,7 +71,7 @@ export class NPC
     }
     Canvas.getCtx().drawImage(
       npcImage,
-      this.currentIdleSpriteIndex * this.SINGLE_PRESET_WIDTH,
+      this.currentAnimationFrameIndex * this.SINGLE_PRESET_WIDTH,
       0,
       this.SINGLE_PRESET_WIDTH,
       npcImage.height,

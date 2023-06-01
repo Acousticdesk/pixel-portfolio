@@ -31,6 +31,41 @@ export class MapInteractableController {
     );
     const map1Npc1Interactable = new InteractableDecorator(
       map1Npc1Companion,
+      181,
+      (self) => {
+        const npcPhrase = (self.getSubject() as CompanionDecorator)
+          .getPhrases()
+          .getPhrase(0);
+        DialogsController.getDialog("text-dialog").handleDialogShow(npcPhrase);
+      }
+    );
+
+    // todo akicha 1: to enums
+    await (await map1Npc1Interactable.init())
+      .getSubject()
+      .init({
+        src: NPC_IMAGES.MAP_1_NPC_1_IMAGE,
+        numberOfFrames: 24,
+        framesOfInterest: [18, 23],
+      });
+
+    const map1InteractableController = new InteractableController();
+    map1InteractableController.addInteractable(map1Npc1Interactable);
+
+    const map1Npc2 = new NPC({
+      x:
+        Map.initialImageOffsetX +
+        MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_NPC_2_OFFSET_X,
+      y:
+        Map.initialImageOffsetY +
+        MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_NPC_2_OFFSET_Y,
+    });
+    const map1Npc2Companion = new CompanionDecorator(
+      map1Npc2,
+      new Phrases(dialogTexts["map-1"]["npc-2"])
+    );
+    const map1Npc2Interactable = new InteractableDecorator(
+      map1Npc2Companion,
       1816,
       (self) => {
         const npcPhrase = (self.getSubject() as CompanionDecorator)
@@ -39,10 +74,16 @@ export class MapInteractableController {
         DialogsController.getDialog("text-dialog").handleDialogShow(npcPhrase);
       }
     );
-    await map1Npc1Interactable.init(NPC_IMAGES.MAP_1_RECEPTIONIST_NPC_IMAGE);
 
-    const map1InteractableController = new InteractableController();
-    map1InteractableController.addInteractable(map1Npc1Interactable);
+    await (await map1Npc2Interactable.init())
+      .getSubject()
+      .init({
+        src: NPC_IMAGES.MAP_1_NPC_2_IMAGE,
+        numberOfFrames: 9,
+        framesOfInterest: [0, 8],
+      });
+
+    map1InteractableController.addInteractable(map1Npc2Interactable);
 
     const map1Computer1 = new ObjectOnMap({
       x:
@@ -63,7 +104,10 @@ export class MapInteractableController {
       }
     );
 
-    await map1Computer1Interactable.init("");
+    // todo akicha 1: makes no sense to pass the sprite parameters for the interactable without sprite
+    await (await map1Computer1Interactable.init())
+      .getSubject()
+      .init({ src: "", numberOfFrames: 1, framesOfInterest: [] });
 
     map1InteractableController.addInteractable(map1Computer1Interactable);
 
@@ -86,7 +130,9 @@ export class MapInteractableController {
       }
     );
 
-    await map1Computer2Interactable.init("");
+    await (await map1Computer2Interactable.init())
+      .getSubject()
+      .init({ src: "", numberOfFrames: 1, framesOfInterest: [] });
 
     map1InteractableController.addInteractable(map1Computer2Interactable);
 

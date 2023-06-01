@@ -8,9 +8,16 @@ import { Animatable } from "../../animatable/interfaces";
 import { Drawable } from "../../drawable/interfaces";
 
 export class InteractableDecorator
-  implements Movable, Initable<string, Promise<void>>, Animatable, Drawable
+  implements
+    Movable,
+    Initable<void, Promise<InteractableDecorator>>,
+    Animatable,
+    Drawable
 {
-  private readonly subject: InteractableSubject<string, Promise<void>>;
+  private readonly subject: InteractableSubject<
+    { src: string; numberOfFrames: number; framesOfInterest: number[] },
+    Promise<void>
+  >;
   private interactionIcon!: HTMLImageElement;
   private interactionIconX = 0;
   private interactionIconY = 0;
@@ -21,7 +28,10 @@ export class InteractableDecorator
   private readonly interactionAreaId: number = 0;
   private readonly interaction: (self: InteractableDecorator) => void;
   constructor(
-    subject: InteractableSubject<string, Promise<void>>,
+    subject: InteractableSubject<
+      { src: string; numberOfFrames: number; framesOfInterest: number[] },
+      Promise<void>
+    >,
     interactionAreaId: number,
     interaction: (self: InteractableDecorator) => void
   ) {
@@ -33,7 +43,7 @@ export class InteractableDecorator
     this.interactionAreaId = interactionAreaId;
     this.interaction = interaction;
   }
-  async init(base64String: string) {
+  async init() {
     this.interactionIcon = new Image();
     // todo akicha: make icon configurable
     this.interactionIcon.src = dialogCloudImageBase64;
@@ -42,7 +52,7 @@ export class InteractableDecorator
       this.interactionIcon.onerror = reject;
     });
 
-    return this.subject.init(base64String);
+    return this;
   }
 
   updateAnimationSpriteFrame() {

@@ -9,8 +9,14 @@ export class CompanionDecorator implements NPC {
     this.npc = npc;
     this.phrases = phrases;
   }
-  async init(base64String: string) {
-    return this.npc.init(base64String);
+  async init(
+    { src, numberOfFrames, framesOfInterest } = {
+      src: "",
+      numberOfFrames: 1,
+      framesOfInterest: [] as number[],
+    }
+  ) {
+    return this.npc.init({ src, numberOfFrames, framesOfInterest });
   }
   updateAnimationSpriteFrame() {
     return this.npc.updateAnimationSpriteFrame();
