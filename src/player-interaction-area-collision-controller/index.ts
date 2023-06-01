@@ -6,7 +6,7 @@ import { Map } from "../map";
 
 export class PlayerInteractionAreaCollisionController {
   // the app needs this gap to show the dialog window
-  // when a user is close to the area of interaction with NPC
+  // when a user is close to the area of interaction with Interactable
   static createGapAreaAroundPlayer() {
     const gapSize = 32;
     const originalPlayerPositionX = Player.x - Map.initialImageOffsetX;

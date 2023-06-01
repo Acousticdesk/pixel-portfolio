@@ -6,7 +6,7 @@ import { Map } from "../map";
 import { MAP_INTERACTABLE_CONTROLLER_ENUMS } from "./enums";
 import { Phrases } from "../phrases";
 import dialogTexts from "../dialog-texts";
-import { InteractableDecorator } from "../interactable/decorators";
+import { InteractableDecorator } from "../interactable";
 import { ObjectOnMap } from "../object-on-map";
 import { DialogsController } from "../dialogs-controller";
 import { project1Template } from "../projects/templates/project-1";

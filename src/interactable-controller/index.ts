@@ -1,6 +1,4 @@
-import { NPC } from "../npc/interfaces";
-import { Movable } from "../movables-controller/interfaces";
-import { InteractableDecorator } from "../interactable/decorators";
+import { InteractableDecorator } from "../interactable";
 
 export class InteractableController {
   private interactables: InteractableDecorator[] = [];

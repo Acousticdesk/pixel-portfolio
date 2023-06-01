@@ -18,14 +18,8 @@ import { DialogsController } from "./dialogs-controller";
 import { TextDialogImplementation } from "./dialog/implementations/text-dialog";
 import { MarkupDialogImplementation } from "./dialog/implementations/markup-dialog";
 
-// todo akicha: add dialogs for communication w/ NPC, use Press Start 2P font, animate text rendering,
-//  add dialog windows, add dialog controls
-
-// todo akicha: add onboarding
 // todo akicha: add npc with feedbacks about work
 // todo akicha: add interaction with bookshelf about the books read
-
-// todo akicha: create a interactable class that may include npcs and objects
 function animate() {
   Canvas.resetCanvas();
   MovementController.move();
