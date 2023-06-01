@@ -24,6 +24,7 @@ export class MapInteractableController {
       y:
         Map.initialImageOffsetY +
         MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_NPC_1_OFFSET_Y,
+      animationThrottleMs: 50,
     });
     const map1Npc1Companion = new CompanionDecorator(
       map1Npc1,
@@ -41,13 +42,11 @@ export class MapInteractableController {
     );
 
     // todo akicha 1: to enums
-    await (await map1Npc1Interactable.init())
-      .getSubject()
-      .init({
-        src: NPC_IMAGES.MAP_1_NPC_1_IMAGE,
-        numberOfFrames: 24,
-        framesOfInterest: [18, 23],
-      });
+    await (await map1Npc1Interactable.init()).getSubject().init({
+      src: NPC_IMAGES.MAP_1_NPC_1_IMAGE,
+      numberOfFrames: 24,
+      framesOfInterest: [18, 23],
+    });
 
     const map1InteractableController = new InteractableController();
     map1InteractableController.addInteractable(map1Npc1Interactable);
@@ -59,6 +58,7 @@ export class MapInteractableController {
       y:
         Map.initialImageOffsetY +
         MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_NPC_2_OFFSET_Y,
+      animationThrottleMs: 100,
     });
     const map1Npc2Companion = new CompanionDecorator(
       map1Npc2,
@@ -75,13 +75,11 @@ export class MapInteractableController {
       }
     );
 
-    await (await map1Npc2Interactable.init())
-      .getSubject()
-      .init({
-        src: NPC_IMAGES.MAP_1_NPC_2_IMAGE,
-        numberOfFrames: 9,
-        framesOfInterest: [0, 8],
-      });
+    await (await map1Npc2Interactable.init()).getSubject().init({
+      src: NPC_IMAGES.MAP_1_NPC_2_IMAGE,
+      numberOfFrames: 9,
+      framesOfInterest: [0, 8],
+    });
 
     map1InteractableController.addInteractable(map1Npc2Interactable);
 

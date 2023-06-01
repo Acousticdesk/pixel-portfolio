@@ -24,11 +24,21 @@ export class NPC
   private currentAnimationFrameIndex: number = 0;
   private framesOfInterest: number[] = [];
   private lastIdleSpriteChange = Date.now();
+  private animationThrottleMs;
   private sprite!: Sprite;
 
-  constructor({ x, y }: { x: number; y: number }) {
+  constructor({
+    x,
+    y,
+    animationThrottleMs,
+  }: {
+    x: number;
+    y: number;
+    animationThrottleMs: number;
+  }) {
     this.x = x;
     this.y = y;
+    this.animationThrottleMs = animationThrottleMs;
   }
 
   // todo akicha 1: create a sprite separately from the initializer
@@ -48,7 +58,7 @@ export class NPC
 
   updateAnimationSpriteFrame() {
     const idleAnimationShouldThrottle =
-      Date.now() - this.lastIdleSpriteChange <= 50;
+      Date.now() - this.lastIdleSpriteChange <= this.animationThrottleMs;
 
     if (idleAnimationShouldThrottle) {
       return;
