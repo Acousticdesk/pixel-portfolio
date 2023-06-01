@@ -4,19 +4,19 @@ import { Player } from "./player";
 import { MovementController } from "./movement-controller";
 import { Keyboard } from "./keyboard";
 import { collisions } from "./collisions";
-import { dialogAreas } from "./dialog-areas";
+import { interactionAreas } from "./interaction-areas";
 import { InteractionTileMapper } from "./interaction-tile-mapper";
 import { BoundaryController } from "./boundary-controller";
 import { MapForeground } from "./map-foreground";
 import { MapNPCController } from "./map-npc-controller";
-import { DialogAreaController } from "./dialog-area-controller";
-import { NPCDialogController } from "./npc-dialog-controller";
+import { InteractionAreaController } from "./interaction-area-controller";
+import { PlayerInteractionAreaController } from "./player-interaction-area-controller";
 import { MovablesController } from "./movables-controller";
-import { NpcDialogUiController } from "./npc-dialog-ui-controller";
+import { Dialog } from "./dialog";
 import { Onboarding } from "./onboarding";
 import { DialogsController } from "./dialogs-controller";
-import { TextDialogImplementation } from "./npc-dialog-ui-controller/implementations/text-dialog";
-import { MarkupDialogImplementation } from "./npc-dialog-ui-controller/implementations/markup-dialog";
+import { TextDialogImplementation } from "./dialog/implementations/text-dialog";
+import { MarkupDialogImplementation } from "./dialog/implementations/markup-dialog";
 
 // todo akicha: add dialogs for communication w/ NPC, use Press Start 2P font, animate text rendering,
 //  add dialog windows, add dialog controls
@@ -31,10 +31,10 @@ function animate() {
   MovementController.move();
   Map.draw();
   BoundaryController.draw();
-  DialogAreaController.draw();
+  InteractionAreaController.draw();
   // todo akicha: find a more meaningful naming
-  NPCDialogController.trySpeakToAnyone();
-  NPCDialogController.talk();
+  PlayerInteractionAreaController.trySpeakToAnyone();
+  PlayerInteractionAreaController.talk();
   Player.move();
   Player.draw();
   MapNPCController.selectNPCsOnCurrentMap().updateIdlingPosition().draw();
@@ -53,16 +53,16 @@ export async function main() {
     })
   );
 
-  DialogAreaController.init(
+  InteractionAreaController.init(
     InteractionTileMapper.createInteractionTileCoordinates<{
       x: number;
       y: number;
       value: number;
-    }>(dialogAreas, {
+    }>(interactionAreas, {
       createInteractionTile: ({ x, y, i, j }) => ({
         x,
         y,
-        value: dialogAreas[i][j],
+        value: interactionAreas[i][j],
       }),
     })
   );
@@ -76,17 +76,17 @@ export async function main() {
   });
 
   MovablesController.registerCollection({
-    getItems: () => DialogAreaController.getDialogAreas(),
+    getItems: () => InteractionAreaController.getInteractionAreas(),
   });
 
   DialogsController.registerDialog(
     "text-dialog",
-    new NpcDialogUiController(new TextDialogImplementation())
+    new Dialog(new TextDialogImplementation())
   );
 
   DialogsController.registerDialog(
     "markup-dialog",
-    new NpcDialogUiController(new MarkupDialogImplementation())
+    new Dialog(new MarkupDialogImplementation())
   );
 
   Onboarding.init();

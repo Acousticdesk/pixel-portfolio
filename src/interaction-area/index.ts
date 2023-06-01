@@ -3,8 +3,7 @@ import { MAP_ENUMS } from "../map/enums";
 import { InteractionTile } from "../interaction-tile";
 import { Movable } from "../movables-controller/interfaces";
 
-// todo akicha 1: rename to Interaction Area
-export class DialogArea implements InteractionTile, Movable {
+export class InteractionArea implements InteractionTile, Movable {
   x: number;
   y: number;
   value: number;
@@ -21,8 +20,8 @@ export class DialogArea implements InteractionTile, Movable {
     ctx.fillRect(
       this.x + MAP_ENUMS.INITIAL_MAP_POSITION_X,
       this.y + MAP_ENUMS.INITIAL_MAP_POSITION_Y,
-      DialogArea.size,
-      DialogArea.size
+      InteractionArea.size,
+      InteractionArea.size
     );
   }
 

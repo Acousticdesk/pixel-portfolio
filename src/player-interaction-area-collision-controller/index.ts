@@ -1,10 +1,10 @@
 import { Player } from "../player";
 import { Boundary } from "../boundary";
-import { DialogAreaController } from "../dialog-area-controller";
+import { InteractionAreaController } from "../interaction-area-controller";
 import { Collision } from "../collision";
 import { Map } from "../map";
 
-export class PlayerDialogAreaCollisionController {
+export class PlayerInteractionAreaCollisionController {
   // the app needs this gap to show the dialog window
   // when a user is close to the area of interaction with NPC
   static createGapAreaAroundPlayer() {
@@ -27,9 +27,9 @@ export class PlayerDialogAreaCollisionController {
     };
   }
   static findCollisionTile() {
-    for (let dialogArea of DialogAreaController.getDialogAreas()) {
+    for (let dialogArea of InteractionAreaController.getInteractionAreas()) {
       const playerWithGapArea =
-        PlayerDialogAreaCollisionController.createGapAreaAroundPlayer();
+        PlayerInteractionAreaCollisionController.createGapAreaAroundPlayer();
       if (
         Collision.rectangularCollision(playerWithGapArea, {
           x: dialogArea.x,

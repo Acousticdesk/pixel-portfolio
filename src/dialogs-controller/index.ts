@@ -1,8 +1,8 @@
-import { NpcDialogUiController } from "../npc-dialog-ui-controller";
+import { Dialog } from "../dialog";
 
 export class DialogsController {
-  private static dialogs: Record<string, NpcDialogUiController> = {};
-  static registerDialog(name: string, dialog: NpcDialogUiController) {
+  private static dialogs: Record<string, Dialog> = {};
+  static registerDialog(name: string, dialog: Dialog) {
     DialogsController.dialogs[name] = dialog;
     dialog.init();
   }

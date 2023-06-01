@@ -2,7 +2,7 @@
 import { MAP_ENUMS } from "./map/enums";
 
 // todo akicha: come up with a mechanism to combine all the interaction zones together
-const dialogAreasRaw = [
+const interactionAreasRaw = [
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1817, 1817, 0,
@@ -17,8 +17,8 @@ const dialogAreasRaw = [
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ];
 
-export const dialogAreas: number[][] = [];
+export const interactionAreas: number[][] = [];
 
-for (let i = 0; i < dialogAreasRaw.length; i += MAP_ENUMS.MAP_WIDTH) {
-  dialogAreas.push(dialogAreasRaw.slice(i, i + MAP_ENUMS.MAP_WIDTH));
+for (let i = 0; i < interactionAreasRaw.length; i += MAP_ENUMS.MAP_WIDTH) {
+  interactionAreas.push(interactionAreasRaw.slice(i, i + MAP_ENUMS.MAP_WIDTH));
 }
