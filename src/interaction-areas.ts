@@ -1,4 +1,4 @@
-// the collisions layer exported from Tiled as is
+// the interaction-area layer exported from Tiled as is
 import { MAP_ENUMS } from "./map/enums";
 
 // todo akicha: come up with a mechanism to combine all the interaction zones together
