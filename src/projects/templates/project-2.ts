@@ -1,9 +1,12 @@
+import project2Logo from "../assets/images/project-2-logo.jpg";
+
 export const project2Template = `
+<img class="project__logo" src="${project2Logo}" alt="Pixel Coffee">
 <h3 class="project__heading">Position</h3>
 <p>Senior Software Engineer</p>
 <p>Kyiv, Ukraine - 2021 - 2023</p>
 <h3 class="project__heading">Project</h3>
-<p>Star</p>
+<p>Eyewear Recommendation Platform</p>
 <h3 class="project__heading">Project description</h3>
 <p>An application in HealthTech domain that allows the eyewear selection process by combining 3D modeling, augmented reality, and e-commerce. Customers can view realistic avatars of themselves, try on glasses frames virtually, and seamlessly place orders. The application offers an extensive catalog, personalized customization options, and additional features such as favorites lists.</p>
 <h3 class="project__heading">Technologies used</h3>
