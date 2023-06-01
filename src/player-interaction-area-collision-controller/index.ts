@@ -27,18 +27,18 @@ export class PlayerInteractionAreaCollisionController {
     };
   }
   static findCollisionTile() {
-    for (let dialogArea of InteractionAreaController.getInteractionAreas()) {
+    for (let interactionArea of InteractionAreaController.getInteractionAreas()) {
       const playerWithGapArea =
         PlayerInteractionAreaCollisionController.createGapAreaAroundPlayer();
       if (
         Collision.rectangularCollision(playerWithGapArea, {
-          x: dialogArea.x,
+          x: interactionArea.x,
           width: Boundary.size,
-          y: dialogArea.y,
+          y: interactionArea.y,
           height: Boundary.size,
         })
       ) {
-        return dialogArea;
+        return interactionArea;
       }
     }
 

@@ -5,12 +5,11 @@ import { Keyboard } from "../keyboard";
 import { InteractableDecorator } from "../interactable/decorators";
 
 export class PlayerInteractionAreaController {
-  // todo akicha 1: not only Npc can be interactable
   private static isInteractableNPC(npc: NPC): npc is InteractableDecorator {
     return npc instanceof InteractableDecorator;
   }
   static trySpeakToAnyone() {
-    const dialogArea =
+    const interactionArea =
       PlayerInteractionAreaCollisionController.findCollisionTile();
 
     MapInteractableController.selectNPCsOnCurrentMap()
@@ -18,13 +17,13 @@ export class PlayerInteractionAreaController {
       .filter(PlayerInteractionAreaController.isInteractableNPC)
       .forEach((npc) => npc.restrictToInteractWith());
 
-    if (!dialogArea) {
+    if (!interactionArea) {
       return;
     }
 
     const companion =
       PlayerInteractionAreaController.findCompanionResponsibleForInteractionArea(
-        dialogArea.value
+        interactionArea.value
       );
 
     if (!companion) {
@@ -39,16 +38,16 @@ export class PlayerInteractionAreaController {
       return;
     }
 
-    const dialogArea =
+    const interactionArea =
       PlayerInteractionAreaCollisionController.findCollisionTile();
 
-    if (!dialogArea) {
+    if (!interactionArea) {
       return;
     }
 
     const interactable =
       PlayerInteractionAreaController.findCompanionResponsibleForInteractionArea(
-        dialogArea.value
+        interactionArea.value
       );
 
     if (!interactable) {
@@ -59,14 +58,14 @@ export class PlayerInteractionAreaController {
   }
 
   private static findCompanionResponsibleForInteractionArea(
-    dialogAreaId: number
+    interactionAreaId: number
   ) {
     const companions = MapInteractableController.selectNPCsOnCurrentMap()
       .addInteractables()
       .filter(PlayerInteractionAreaController.isInteractableNPC);
 
     return companions.find(
-      (companion) => companion.getInteractionAreaId() === dialogAreaId
+      (companion) => companion.getInteractionAreaId() === interactionAreaId
     );
   }
 }

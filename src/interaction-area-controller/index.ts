@@ -1,21 +1,23 @@
 import { InteractionArea } from "../interaction-area";
 
 export class InteractionAreaController {
-  static dialogAreas: InteractionArea[];
+  static interactionAreas: InteractionArea[];
 
-  static init(dialogAreas: { x: number; y: number; value: number }[]) {
-    InteractionAreaController.dialogAreas = dialogAreas.map(
-      (dialogArea) => new InteractionArea(dialogArea)
+  static init(interactionAreas: { x: number; y: number; value: number }[]) {
+    InteractionAreaController.interactionAreas = interactionAreas.map(
+      (interactionArea) => new InteractionArea(interactionArea)
     );
   }
 
   static draw() {
-    InteractionAreaController.getInteractionAreas().forEach((dialogArea) => {
-      dialogArea.draw();
-    });
+    InteractionAreaController.getInteractionAreas().forEach(
+      (interactionArea) => {
+        interactionArea.draw();
+      }
+    );
   }
 
   static getInteractionAreas() {
-    return this.dialogAreas;
+    return this.interactionAreas;
   }
 }
