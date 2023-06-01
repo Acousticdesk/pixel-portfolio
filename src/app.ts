@@ -8,7 +8,7 @@ import { interactionAreas } from "./interaction-areas";
 import { InteractionTileMapper } from "./interaction-tile-mapper";
 import { BoundaryController } from "./boundary-controller";
 import { MapForeground } from "./map-foreground";
-import { MapNPCController } from "./map-npc-controller";
+import { MapInteractableController } from "./map-interactable-controller";
 import { InteractionAreaController } from "./interaction-area-controller";
 import { PlayerInteractionAreaController } from "./player-interaction-area-controller";
 import { MovablesController } from "./movables-controller";
@@ -37,7 +37,9 @@ function animate() {
   PlayerInteractionAreaController.talk();
   Player.move();
   Player.draw();
-  MapNPCController.selectNPCsOnCurrentMap().updateIdlingPosition().draw();
+  MapInteractableController.selectNPCsOnCurrentMap()
+    .updateIdlingPosition()
+    .draw();
   Player.draw();
   MapForeground.draw();
   window.requestAnimationFrame(animate);
@@ -72,7 +74,8 @@ export async function main() {
   });
 
   MovablesController.registerCollection({
-    getItems: () => MapNPCController.selectNPCsOnCurrentMap().getNPCs(),
+    getItems: () =>
+      MapInteractableController.selectNPCsOnCurrentMap().getNPCs(),
   });
 
   MovablesController.registerCollection({
@@ -94,7 +97,7 @@ export async function main() {
   Canvas.init();
   await Map.init();
   await Player.init();
-  await MapNPCController.init();
+  await MapInteractableController.init();
   await MapForeground.init();
   Keyboard.init();
   animate();

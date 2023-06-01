@@ -12,9 +12,8 @@ import { DialogsController } from "../dialogs-controller";
 import { project1Template } from "../projects/templates/project-1";
 import { project2Template } from "../projects/templates/project-2";
 
-// todo akicha: rename to MapInteractableController
-export class MapNPCController {
-  static npcsOnMap: Record<string, NPCController> = {};
+export class MapInteractableController {
+  static interactablesOnMap: Record<string, NPCController> = {};
   static currentMap = "map-1";
 
   static async init() {
@@ -31,9 +30,7 @@ export class MapNPCController {
       map1Npc1,
       new Phrases(dialogTexts["map-1"]["npc-1"])
     );
-    // todo akicha 1:
     const map1Npc1Interactable = new InteractableDecorator(
-      // @ts-ignore
       map1Npc1Companion,
       1816,
       (self) => {
@@ -47,7 +44,6 @@ export class MapNPCController {
 
     map1NPCController.addNPC(map1Npc1Interactable);
 
-    // todo akicha 1: fix the issue with the tile position when the window is resized
     const map1Computer1 = new ObjectOnMap({
       x:
         Map.initialImageOffsetX +
@@ -99,15 +95,21 @@ export class MapNPCController {
 
     map1NPCController.addNPC(map1Computer2Interactable);
 
-    MapNPCController.npcsOnMap["map-1"] = map1NPCController;
+    MapInteractableController.interactablesOnMap["map-1"] = map1NPCController;
   }
 
   static selectNPCsOnCurrentMap() {
-    if (!MapNPCController.npcsOnMap[MapNPCController.currentMap]) {
+    if (
+      !MapInteractableController.interactablesOnMap[
+        MapInteractableController.currentMap
+      ]
+    ) {
       throw new Error(
-        "MapNPCController was never inited. Please call MapNPCController.init()"
+        "MapInteractableController was never inited. Please call MapInteractableController.init()"
       );
     }
-    return MapNPCController.npcsOnMap[MapNPCController.currentMap];
+    return MapInteractableController.interactablesOnMap[
+      MapInteractableController.currentMap
+    ];
   }
 }

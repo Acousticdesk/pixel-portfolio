@@ -1,5 +1,5 @@
 import { PlayerInteractionAreaCollisionController } from "../player-interaction-area-collision-controller";
-import { MapNPCController } from "../map-npc-controller";
+import { MapInteractableController } from "../map-interactable-controller";
 import { NPC } from "../npc/interfaces";
 import { Keyboard } from "../keyboard";
 import { InteractableDecorator } from "../interactable/decorators";
@@ -13,7 +13,7 @@ export class PlayerInteractionAreaController {
     const dialogArea =
       PlayerInteractionAreaCollisionController.findCollisionTile();
 
-    MapNPCController.selectNPCsOnCurrentMap()
+    MapInteractableController.selectNPCsOnCurrentMap()
       .getNPCs()
       .filter(PlayerInteractionAreaController.isInteractableNPC)
       .forEach((npc) => npc.restrictToInteractWith());
@@ -61,7 +61,7 @@ export class PlayerInteractionAreaController {
   private static findCompanionResponsibleForInteractionArea(
     dialogAreaId: number
   ) {
-    const companions = MapNPCController.selectNPCsOnCurrentMap()
+    const companions = MapInteractableController.selectNPCsOnCurrentMap()
       .getNPCs()
       .filter(PlayerInteractionAreaController.isInteractableNPC);
 

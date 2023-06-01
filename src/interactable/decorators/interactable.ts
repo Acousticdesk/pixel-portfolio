@@ -43,7 +43,7 @@ export class InteractableDecorator {
       this.interactionIcon.onerror = reject;
     });
 
-    return this.subject.init<string, Promise<void>>(base64String);
+    return this.subject.init(base64String);
   }
 
   // todo akicha: see if there is a chance to find a better naming for this method for Interactable, NPC and Player

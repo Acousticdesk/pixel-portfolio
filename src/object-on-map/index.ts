@@ -2,8 +2,6 @@ import { Movable } from "../movables-controller/interfaces";
 import { Animatable } from "../animatable/interfaces";
 import { Drawable } from "../drawable/interfaces";
 import { Initable } from "../initable/interfaces";
-import { Canvas } from "../canvas";
-import { Map } from "../map";
 
 // todo akicha 1: see if there is a need in implementing the Animatable, Drawable and Initable interfaces
 export class ObjectOnMap
@@ -17,8 +15,6 @@ export class ObjectOnMap
     this.y = y;
   }
 
-  // todo akicha 1:
-  // @ts-ignore
   init(_: string) {
     return Promise.resolve();
   }
