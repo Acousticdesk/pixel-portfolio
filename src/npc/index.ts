@@ -29,7 +29,7 @@ export class NPC
       this.sprite.getImage().width / NPC_ENUMS.NUMBER_OF_IDLE_SPRITE_PRESETS;
   }
 
-  updateIdlingPosition() {
+  updateAnimationSpriteFrame() {
     const idleAnimationShouldThrottle =
       Date.now() - this.lastIdleSpriteChange <= 50;
 

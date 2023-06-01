@@ -12,8 +12,8 @@ export class CompanionDecorator implements NPC {
   async init(base64String: string) {
     return this.npc.init(base64String);
   }
-  updateIdlingPosition() {
-    return this.npc.updateIdlingPosition();
+  updateAnimationSpriteFrame() {
+    return this.npc.updateAnimationSpriteFrame();
   }
 
   draw() {

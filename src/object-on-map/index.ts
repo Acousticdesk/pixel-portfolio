@@ -20,7 +20,7 @@ export class ObjectOnMap
   }
 
   // todo akicha 1: see if there is a need in this method
-  updateIdlingPosition() {}
+  updateAnimationSpriteFrame() {}
 
   // todo akicha 1: see if there is a need in this method
   draw() {}

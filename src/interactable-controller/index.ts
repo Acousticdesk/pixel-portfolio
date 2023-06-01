@@ -9,9 +9,9 @@ export class InteractableController {
     this.interactables.push(interactable);
   }
 
-  updateIdlingPosition() {
+  updateAnimationSpriteFrame() {
     this.interactables.forEach((interactable) =>
-      interactable.updateIdlingPosition()
+      interactable.updateAnimationSpriteFrame()
     );
     return this;
   }

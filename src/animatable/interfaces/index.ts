@@ -1,3 +1,3 @@
 export interface Animatable {
-  updateIdlingPosition: () => void;
+  updateAnimationSpriteFrame: () => void;
 }

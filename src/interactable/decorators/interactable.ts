@@ -11,7 +11,7 @@ export class InteractableDecorator {
   private interactionIconAnimationStep = 0;
   private lastInteractionIconAnimationFrameChange = Date.now();
   private canInteract = false;
-  // this property is used to find the closes CompanionNPC when user collides with
+  // this property is used to find the closest Interactable when user collides with an interaction area
   private interactionAreaId = 0;
   private interaction: (self: InteractableDecorator) => void;
   constructor(
@@ -28,7 +28,6 @@ export class InteractableDecorator {
     // this.phrases = phrases;
     this.interaction = interaction;
   }
-  // todo akicha 1: base64 string is optional
   async init(base64String: string) {
     this.interactionIcon = new Image();
     // todo akicha: make icon configurable
@@ -41,8 +40,7 @@ export class InteractableDecorator {
     return this.subject.init(base64String);
   }
 
-  // todo akicha: see if there is a chance to find a better naming for this method for Interactable, NPC and Player
-  updateIdlingPosition() {
+  updateAnimationSpriteFrame() {
     const idleAnimationShouldThrottle =
       Date.now() - this.lastInteractionIconAnimationFrameChange <= 50;
 
@@ -61,7 +59,7 @@ export class InteractableDecorator {
 
     this.lastInteractionIconAnimationFrameChange = Date.now();
 
-    return this.subject.updateIdlingPosition();
+    return this.subject.updateAnimationSpriteFrame();
   }
 
   draw() {
@@ -97,12 +95,10 @@ export class InteractableDecorator {
     return this.subject.setY(y);
   }
 
-  // todo akicha 1: come up with a shorter name
   allowToInteractWith() {
     this.canInteract = true;
   }
 
-  // todo akicha 1: come up with a shorter name
   restrictToInteractWith() {
     this.canInteract = false;
   }
@@ -110,11 +106,6 @@ export class InteractableDecorator {
   getInteractionAreaId() {
     return this.interactionAreaId;
   }
-
-  // todo akicha 1: move to the CompanionDecorator
-  // getPhrases() {
-  //   return this.phrases;
-  // }
 
   getSubject() {
     return this.subject;

@@ -38,7 +38,7 @@ function animate() {
   Player.move();
   Player.draw();
   MapInteractableController.selectInteractablesOnCurrentMap()
-    .updateIdlingPosition()
+    .updateAnimationSpriteFrame()
     .draw();
   Player.draw();
   MapForeground.draw();
