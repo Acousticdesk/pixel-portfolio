@@ -80,6 +80,7 @@ export class MarkupDialogImplementation
 
   private hideDialog() {
     const element = this.getDialogElement();
+    element.scrollTo(0, 0);
     element.hidden = true;
   }
 
