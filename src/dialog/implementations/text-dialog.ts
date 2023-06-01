@@ -1,4 +1,4 @@
-import { NPC_DIALOG_UI_CONTROLLER_ENUMS } from "../enums";
+import { DIALOG_ENUMS } from "../enums";
 import { DialogImplementation } from "../interfaces";
 
 export class TextDialogImplementation implements DialogImplementation<string> {
@@ -6,12 +6,12 @@ export class TextDialogImplementation implements DialogImplementation<string> {
 
   private getDialogElement() {
     const element = document.querySelector<HTMLDivElement>(
-      NPC_DIALOG_UI_CONTROLLER_ENUMS.DIALOG_UI_SELECTOR
+      DIALOG_ENUMS.DIALOG_UI_SELECTOR
     );
 
     if (!element) {
       throw new Error(
-        `UI does not have the required dialog element ${NPC_DIALOG_UI_CONTROLLER_ENUMS.DIALOG_UI_SELECTOR}. Please add it to the index.html file.`
+        `UI does not have the required dialog element ${DIALOG_ENUMS.DIALOG_UI_SELECTOR}. Please add it to the index.html file.`
       );
     }
 
@@ -25,12 +25,12 @@ export class TextDialogImplementation implements DialogImplementation<string> {
 
   private getBackdropElement() {
     const element = document.querySelector<HTMLDivElement>(
-      NPC_DIALOG_UI_CONTROLLER_ENUMS.BACKDROP_UI_SELECTOR
+      DIALOG_ENUMS.BACKDROP_UI_SELECTOR
     );
 
     if (!element) {
       throw new Error(
-        `UI does not have the required dialog backdrop element ${NPC_DIALOG_UI_CONTROLLER_ENUMS.BACKDROP_UI_SELECTOR}. Please add it to the index.html file.`
+        `UI does not have the required dialog backdrop element ${DIALOG_ENUMS.BACKDROP_UI_SELECTOR}. Please add it to the index.html file.`
       );
     }
 
@@ -39,12 +39,12 @@ export class TextDialogImplementation implements DialogImplementation<string> {
 
   private getContentElement() {
     const element = document.querySelector<HTMLPreElement>(
-      NPC_DIALOG_UI_CONTROLLER_ENUMS.CONTENT_UI_SELECTOR
+      DIALOG_ENUMS.CONTENT_UI_SELECTOR
     );
 
     if (!element) {
       throw new Error(
-        `UI does not have the required dialog content element ${NPC_DIALOG_UI_CONTROLLER_ENUMS.CONTENT_UI_SELECTOR}. Please add it to the index.html file.`
+        `UI does not have the required dialog content element ${DIALOG_ENUMS.CONTENT_UI_SELECTOR}. Please add it to the index.html file.`
       );
     }
 
@@ -53,7 +53,7 @@ export class TextDialogImplementation implements DialogImplementation<string> {
 
   init() {
     document
-      .querySelector(NPC_DIALOG_UI_CONTROLLER_ENUMS.CONFIRM_UI_SELECTOR)
+      .querySelector(DIALOG_ENUMS.CONFIRM_UI_SELECTOR)
       ?.addEventListener("click", this.handleDialogHide.bind(this));
   }
 
@@ -113,6 +113,6 @@ export class TextDialogImplementation implements DialogImplementation<string> {
         window.clearInterval(intervalId);
         this.isAnimationInProgress = false;
       }
-    }, NPC_DIALOG_UI_CONTROLLER_ENUMS.TEXT_ANIMATION_THROTTLE_RATE_MS);
+    }, DIALOG_ENUMS.TEXT_ANIMATION_THROTTLE_RATE_MS);
   }
 }

@@ -1,17 +1,17 @@
 import { DialogImplementation } from "../interfaces";
-import { NPC_DIALOG_UI_CONTROLLER_ENUMS } from "../enums";
+import { DIALOG_ENUMS } from "../enums";
 
 export class MarkupDialogImplementation
   implements DialogImplementation<string>
 {
   private getDialogElement() {
     const element = document.querySelector<HTMLDivElement>(
-      NPC_DIALOG_UI_CONTROLLER_ENUMS.MARKUP_DIALOG_UI_SELECTOR
+      DIALOG_ENUMS.MARKUP_DIALOG_UI_SELECTOR
     );
 
     if (!element) {
       throw new Error(
-        `UI does not have the required dialog element ${NPC_DIALOG_UI_CONTROLLER_ENUMS.MARKUP_DIALOG_UI_SELECTOR}. Please add it to the index.html file.`
+        `UI does not have the required dialog element ${DIALOG_ENUMS.MARKUP_DIALOG_UI_SELECTOR}. Please add it to the index.html file.`
       );
     }
 
@@ -20,12 +20,12 @@ export class MarkupDialogImplementation
 
   private getBackdropElement() {
     const element = document.querySelector<HTMLDivElement>(
-      NPC_DIALOG_UI_CONTROLLER_ENUMS.MARKUP_BACKDROP_UI_SELECTOR
+      DIALOG_ENUMS.MARKUP_BACKDROP_UI_SELECTOR
     );
 
     if (!element) {
       throw new Error(
-        `UI does not have the required dialog backdrop element ${NPC_DIALOG_UI_CONTROLLER_ENUMS.MARKUP_BACKDROP_UI_SELECTOR}. Please add it to the index.html file.`
+        `UI does not have the required dialog backdrop element ${DIALOG_ENUMS.MARKUP_BACKDROP_UI_SELECTOR}. Please add it to the index.html file.`
       );
     }
 
@@ -34,12 +34,12 @@ export class MarkupDialogImplementation
 
   private getContentElement() {
     const element = document.querySelector<HTMLPreElement>(
-      NPC_DIALOG_UI_CONTROLLER_ENUMS.MARKUP_CONTENT_UI_SELECTOR
+      DIALOG_ENUMS.MARKUP_CONTENT_UI_SELECTOR
     );
 
     if (!element) {
       throw new Error(
-        `UI does not have the required dialog content element ${NPC_DIALOG_UI_CONTROLLER_ENUMS.MARKUP_CONTENT_UI_SELECTOR}. Please add it to the index.html file.`
+        `UI does not have the required dialog content element ${DIALOG_ENUMS.MARKUP_CONTENT_UI_SELECTOR}. Please add it to the index.html file.`
       );
     }
 
@@ -48,7 +48,7 @@ export class MarkupDialogImplementation
 
   init() {
     document
-      .querySelector(NPC_DIALOG_UI_CONTROLLER_ENUMS.MARKUP_CONFIRM_UI_SELECTOR)
+      .querySelector(DIALOG_ENUMS.MARKUP_CONFIRM_UI_SELECTOR)
       ?.addEventListener("click", this.handleDialogHide.bind(this));
   }
 
