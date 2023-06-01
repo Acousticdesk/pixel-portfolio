@@ -37,7 +37,7 @@ function animate() {
   PlayerInteractionAreaController.talk();
   Player.move();
   Player.draw();
-  MapInteractableController.selectNPCsOnCurrentMap()
+  MapInteractableController.selectInteractablesOnCurrentMap()
     .updateIdlingPosition()
     .draw();
   Player.draw();
@@ -75,7 +75,7 @@ export async function main() {
 
   MovablesController.registerCollection({
     getItems: () =>
-      MapInteractableController.selectNPCsOnCurrentMap().addInteractables(),
+      MapInteractableController.selectInteractablesOnCurrentMap().getInteractables(),
   });
 
   MovablesController.registerCollection({

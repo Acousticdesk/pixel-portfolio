@@ -21,7 +21,7 @@ export class InteractableController {
     return this;
   }
 
-  addInteractables() {
+  getInteractables() {
     return this.interactables;
   }
 }

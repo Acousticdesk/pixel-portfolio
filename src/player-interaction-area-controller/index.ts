@@ -1,28 +1,22 @@
 import { PlayerInteractionAreaCollisionController } from "../player-interaction-area-collision-controller";
 import { MapInteractableController } from "../map-interactable-controller";
-import { NPC } from "../npc/interfaces";
 import { Keyboard } from "../keyboard";
-import { InteractableDecorator } from "../interactable/decorators";
 
 export class PlayerInteractionAreaController {
-  private static isInteractableNPC(npc: NPC): npc is InteractableDecorator {
-    return npc instanceof InteractableDecorator;
-  }
   static trySpeakToAnyone() {
     const interactionArea =
       PlayerInteractionAreaCollisionController.findCollisionTile();
 
-    MapInteractableController.selectNPCsOnCurrentMap()
-      .addInteractables()
-      .filter(PlayerInteractionAreaController.isInteractableNPC)
-      .forEach((npc) => npc.restrictToInteractWith());
+    MapInteractableController.selectInteractablesOnCurrentMap()
+      .getInteractables()
+      .forEach((interactable) => interactable.restrictToInteractWith());
 
     if (!interactionArea) {
       return;
     }
 
     const companion =
-      PlayerInteractionAreaController.findCompanionResponsibleForInteractionArea(
+      PlayerInteractionAreaController.findInteractableBasedOnInteractionAreaId(
         interactionArea.value
       );
 
@@ -46,7 +40,7 @@ export class PlayerInteractionAreaController {
     }
 
     const interactable =
-      PlayerInteractionAreaController.findCompanionResponsibleForInteractionArea(
+      PlayerInteractionAreaController.findInteractableBasedOnInteractionAreaId(
         interactionArea.value
       );
 
@@ -57,15 +51,13 @@ export class PlayerInteractionAreaController {
     interactable.interact();
   }
 
-  private static findCompanionResponsibleForInteractionArea(
+  private static findInteractableBasedOnInteractionAreaId(
     interactionAreaId: number
   ) {
-    const companions = MapInteractableController.selectNPCsOnCurrentMap()
-      .addInteractables()
-      .filter(PlayerInteractionAreaController.isInteractableNPC);
-
-    return companions.find(
-      (companion) => companion.getInteractionAreaId() === interactionAreaId
-    );
+    return MapInteractableController.selectInteractablesOnCurrentMap()
+      .getInteractables()
+      .find(
+        (companion) => companion.getInteractionAreaId() === interactionAreaId
+      );
   }
 }
