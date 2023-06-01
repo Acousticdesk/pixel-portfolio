@@ -2,8 +2,14 @@ import dialogCloudImageBase64 from "../assets/images/dialog-cloud.png";
 import { Canvas } from "../../canvas";
 import { INTERACTABLE_DECORATOR_ENUMS } from "./enums";
 import { InteractableSubject } from "./interfaces";
+import { Movable } from "../../movables-controller/interfaces";
+import { Initable } from "../../initable/interfaces";
+import { Animatable } from "../../animatable/interfaces";
+import { Drawable } from "../../drawable/interfaces";
 
-export class InteractableDecorator {
+export class InteractableDecorator
+  implements Movable, Initable<string, Promise<void>>, Animatable, Drawable
+{
   private subject: InteractableSubject<string, Promise<void>>;
   private interactionIcon!: HTMLImageElement;
   private interactionIconX = 0;
@@ -25,7 +31,6 @@ export class InteractableDecorator {
       this.subject.getY() +
       INTERACTABLE_DECORATOR_ENUMS.INTERACTION_ICON_OFFSET_Y;
     this.interactionAreaId = interactionAreaId;
-    // this.phrases = phrases;
     this.interaction = interaction;
   }
   async init(base64String: string) {
