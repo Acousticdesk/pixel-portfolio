@@ -10,18 +10,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/styles/main.css">
-    <link rel="stylesheet" href="../src/styles/npc-dialog.css">
+    <link rel="stylesheet" href="../src/styles/dialog.css">
     <link rel="stylesheet" href="../src/styles/onboarding.css">
     <link rel="stylesheet" href="../src/styles/desktop-only.css">
+    <link rel="stylesheet" href="../src/styles/projects.css">
 </head>
 <body>
     <canvas id="canvas"></canvas>
     <!--  todo akicha: add pug template engine  -->
-    <div class="npc-dialog__container">
-        <div hidden class="npc-dialog__backdrop"></div>
-        <div hidden class="npc-dialog">
-            <pre class="npc-dialog__content"></pre>
-            <button hidden class="npc-dialog__confirm">OK</button>
+    <div class="dialog__container">
+        <div id="text_dialog_backdrop" hidden class="dialog__backdrop"></div>
+        <div id="text_dialog" hidden class="dialog">
+            <pre class="dialog__content"></pre>
+            <button id="text_dialog_confirm" hidden class="dialog__confirm">OK</button>
+        </div>
+    </div>
+    
+    <div class="dialog__container">
+        <div id="markup_dialog_backdrop" hidden class="dialog__backdrop"></div>
+        <div id="markup_dialog" hidden class="dialog">
+            <div class="markup-dialog__content"></div>
+            <button id="markup_dialog_confirm" hidden class="dialog__confirm">OK</button>
         </div>
     </div>
     
@@ -30,12 +39,12 @@
             <div>
                 <h4 class="onboarding__hint">Move</h4>
                 <div class="onboarding__button-container">
-                    <button class="onboarding__button onboarding__button--w">w</button>
+                    <button class="onboarding__button onboarding__button--w">W</button>
                 </div>
                 <div class="onboarding__button-container">
-                    <button class="onboarding__button">a</button>
-                    <button class="onboarding__button">s</button>
-                    <button class="onboarding__button">d</button>
+                    <button class="onboarding__button">A</button>
+                    <button class="onboarding__button">S</button>
+                    <button class="onboarding__button">D</button>
                 </div>
             </div>
             <div>

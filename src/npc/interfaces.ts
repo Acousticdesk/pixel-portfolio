@@ -1,5 +1,5 @@
 export interface NPC {
   init: (image: string) => Promise<void>;
-  updateIdlingPosition: () => void;
+  updateAnimationSpriteFrame: () => void;
   draw: () => void;
 }

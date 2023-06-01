@@ -2,7 +2,7 @@ import { MAP_ENUMS } from "../map/enums";
 
 export class InteractionTileMapper {
   static createInteractionTileCoordinates<T>(
-    collisions: (0 | MAP_ENUMS.COLLISION_TILE_VALUE)[][],
+    collisions: number[][],
     {
       createInteractionTile,
     }: {
@@ -22,7 +22,7 @@ export class InteractionTileMapper {
     const interactionTileCoordinates = [];
     for (let i = 0; i < collisions.length; i += 1) {
       for (let j = 0; j < collisions[i].length; j += 1) {
-        if (collisions[i][j] === MAP_ENUMS.COLLISION_TILE_VALUE) {
+        if (collisions[i][j] !== 0) {
           const x =
             j * MAP_ENUMS.TILE_SIZE * (MAP_ENUMS.IMAGE_ZOOM_PERCENTS / 100);
           const y =

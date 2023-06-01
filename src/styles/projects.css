@@ -1,0 +1,14 @@
+.project__logo {
+    width: 320px;
+    height: 320px;
+    display: block;
+    margin: 0 auto;
+}
+
+.project__heading {
+    margin: 64px 0 0;
+}
+
+.project__list li {
+    margin: 24px 0 0;
+}

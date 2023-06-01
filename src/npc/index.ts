@@ -3,9 +3,14 @@ import { Canvas } from "../canvas";
 import { NPC_CONSTS } from "./consts";
 import { Movable } from "../movables-controller/interfaces";
 import { Sprite } from "../sprite";
+import { Animatable } from "../animatable/interfaces";
+import { Drawable } from "../drawable/interfaces";
+import { Initable } from "../initable/interfaces";
 
 // NPC stands for Non-Playable Character
-export class NPC implements Movable {
+export class NPC
+  implements Movable, Animatable, Drawable, Initable<string, Promise<void>>
+{
   private x: number;
   private y: number;
   private SINGLE_PRESET_WIDTH?: number;
@@ -17,7 +22,6 @@ export class NPC implements Movable {
     this.x = x;
     this.y = y;
   }
-
   async init(base64String: string) {
     this.sprite = new Sprite(base64String);
     await this.sprite.init();
@@ -25,7 +29,7 @@ export class NPC implements Movable {
       this.sprite.getImage().width / NPC_ENUMS.NUMBER_OF_IDLE_SPRITE_PRESETS;
   }
 
-  updateIdlingPosition() {
+  updateAnimationSpriteFrame() {
     const idleAnimationShouldThrottle =
       Date.now() - this.lastIdleSpriteChange <= 50;
 

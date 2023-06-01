@@ -2,27 +2,26 @@ import { Canvas } from "../canvas";
 import { MAP_ENUMS } from "../map/enums";
 import { InteractionTile } from "../interaction-tile";
 import { Movable } from "../movables-controller/interfaces";
-import { Map } from "../map";
 
-export class Boundary implements InteractionTile, Movable {
-  private x: number;
-  private y: number;
+export class InteractionArea implements InteractionTile, Movable {
+  x: number;
+  y: number;
+  value: number;
   static size = MAP_ENUMS.TILE_SIZE * (MAP_ENUMS.IMAGE_ZOOM_PERCENTS / 100);
-  constructor({ x, y }: { x: number; y: number }) {
+  constructor({ x, y, value }: { x: number; y: number; value: number }) {
     this.x = x;
     this.y = y;
+    this.value = value;
   }
-  // todo akicha: remove position offset from the draw method
   draw() {
     const ctx = Canvas.getCtx();
 
-    // ctx.fillStyle = "red";
-    ctx.fillStyle = "rgba(255, 0, 0, 0)";
+    ctx.fillStyle = "rgba(0, 255, 0, 0)";
     ctx.fillRect(
-      this.x + Map.initialImageOffsetX,
-      this.y + Map.initialImageOffsetY,
-      Boundary.size,
-      Boundary.size
+      this.x + MAP_ENUMS.INITIAL_MAP_POSITION_X,
+      this.y + MAP_ENUMS.INITIAL_MAP_POSITION_Y,
+      InteractionArea.size,
+      InteractionArea.size
     );
   }
 
