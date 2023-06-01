@@ -10,7 +10,7 @@ import { Drawable } from "../../drawable/interfaces";
 export class InteractableDecorator
   implements Movable, Initable<string, Promise<void>>, Animatable, Drawable
 {
-  private subject: InteractableSubject<string, Promise<void>>;
+  private readonly subject: InteractableSubject<string, Promise<void>>;
   private interactionIcon!: HTMLImageElement;
   private interactionIconX = 0;
   private interactionIconY = 0;
@@ -18,8 +18,8 @@ export class InteractableDecorator
   private lastInteractionIconAnimationFrameChange = Date.now();
   private canInteract = false;
   // this property is used to find the closest Interactable when user collides with an interaction area
-  private interactionAreaId = 0;
-  private interaction: (self: InteractableDecorator) => void;
+  private readonly interactionAreaId: number = 0;
+  private readonly interaction: (self: InteractableDecorator) => void;
   constructor(
     subject: InteractableSubject<string, Promise<void>>,
     interactionAreaId: number,
