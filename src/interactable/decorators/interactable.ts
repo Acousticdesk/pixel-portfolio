@@ -1,7 +1,7 @@
 import dialogCloudImageBase64 from "../assets/images/dialog-cloud.png";
 import { Canvas } from "../../canvas";
 import { INTERACTABLE_DECORATOR_ENUMS } from "./enums";
-import { InteractableSubject } from "./interfaces";
+import { InteractableSubject } from "../interfaces";
 import { Movable } from "../../movables-controller/interfaces";
 import { Initable } from "../../initable/interfaces";
 import { Animatable } from "../../animatable/interfaces";

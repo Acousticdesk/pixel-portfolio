@@ -18,10 +18,8 @@ export class ObjectOnMap
     return Promise.resolve();
   }
 
-  // todo akicha 1: see if there is a need in this method
   updateAnimationSpriteFrame() {}
 
-  // todo akicha 1: see if there is a need in this method
   draw() {}
 
   getX() {
