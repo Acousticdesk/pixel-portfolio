@@ -1,3 +1,0 @@
-todo akicha 1: rename npc-dialog to dialog
-todo akicha 1: create a separate stylesheet for the text-dialog
-todo akicha 1: create a separate stylesheet for the markup-dialog

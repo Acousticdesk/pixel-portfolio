@@ -22,9 +22,6 @@ export class NPC
     this.x = x;
     this.y = y;
   }
-
-  // todo akicha 1:
-  // @ts-ignore
   async init(base64String: string) {
     this.sprite = new Sprite(base64String);
     await this.sprite.init();

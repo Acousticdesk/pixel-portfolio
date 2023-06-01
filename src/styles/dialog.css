@@ -31,14 +31,14 @@
     opacity: 1;
 }
 
-.npc-dialog__content {
+.dialog__content {
     max-width: 640px;
     margin: 0 auto;
     line-height: 1.5;
 }
 
 @media screen and (max-width: 639px) {
-    .npc-dialog__content {
+    .dialog__content {
         max-width: 300px;
         margin: 0 auto;
     }
