@@ -15,16 +15,16 @@ export class PlayerInteractionAreaController {
       return;
     }
 
-    const companion =
+    const interactable =
       PlayerInteractionAreaController.findInteractableBasedOnInteractionAreaId(
         interactionArea.value
       );
 
-    if (!companion) {
+    if (!interactable) {
       return;
     }
 
-    companion.allowToInteractWith();
+    interactable.allowToInteractWith();
   }
 
   static talk() {
@@ -57,7 +57,8 @@ export class PlayerInteractionAreaController {
     return MapInteractableController.selectInteractablesOnCurrentMap()
       .getInteractables()
       .find(
-        (companion) => companion.getInteractionAreaId() === interactionAreaId
+        (interactable) =>
+          interactable.getInteractionAreaId() === interactionAreaId
       );
   }
 }

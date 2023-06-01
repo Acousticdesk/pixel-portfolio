@@ -2,9 +2,7 @@ import dialogCloudImageBase64 from "../assets/images/dialog-cloud.png";
 import { Canvas } from "../../canvas";
 import { INTERACTABLE_DECORATOR_ENUMS } from "./enums";
 import { InteractableSubject } from "./interfaces";
-// import { Phrases } from "../../phrases";
 
-// todo akicha 1: mv dialog, dialog area to interaction, interaction-area
 export class InteractableDecorator {
   private subject: InteractableSubject<string, Promise<void>>;
   private interactionIcon!: HTMLImageElement;
@@ -16,9 +14,6 @@ export class InteractableDecorator {
   // this property is used to find the closes CompanionNPC when user collides with
   private interactionAreaId = 0;
   private interaction: (self: InteractableDecorator) => void;
-  // todo akicha 1: add phrases to the companion decorator
-  // private readonly phrases: Phrases;
-  // constructor(subject: Movable, interactionAreaId: number, phrases: Phrases) {
   constructor(
     subject: InteractableSubject<string, Promise<void>>,
     interactionAreaId: number,
