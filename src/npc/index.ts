@@ -1,5 +1,4 @@
 import { Canvas } from "../canvas";
-import { NPC_CONSTS } from "./consts";
 import { Movable } from "../movables-controller/interfaces";
 import { Sprite } from "../sprite";
 import { Animatable } from "../animatable/interfaces";

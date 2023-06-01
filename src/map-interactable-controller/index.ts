@@ -64,9 +64,10 @@ export class MapInteractableController {
       map1Npc2,
       new Phrases(dialogTexts["map-1"]["npc-2"])
     );
+    // todo akicha 1: add correct interaction tile ids
     const map1Npc2Interactable = new InteractableDecorator(
       map1Npc2Companion,
-      1816,
+      182,
       (self) => {
         const npcPhrase = (self.getSubject() as CompanionDecorator)
           .getPhrases()
@@ -82,6 +83,38 @@ export class MapInteractableController {
     });
 
     map1InteractableController.addInteractable(map1Npc2Interactable);
+
+    const map1Npc3 = new NPC({
+      x:
+        Map.initialImageOffsetX +
+        MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_NPC_3_OFFSET_X,
+      y:
+        Map.initialImageOffsetY +
+        MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_NPC_3_OFFSET_Y,
+      animationThrottleMs: 50,
+    });
+    const map1Npc3Companion = new CompanionDecorator(
+      map1Npc3,
+      new Phrases(dialogTexts["map-1"]["npc-3"])
+    );
+    const map1Npc3Interactable = new InteractableDecorator(
+      map1Npc3Companion,
+      1816,
+      (self) => {
+        const npcPhrase = (self.getSubject() as CompanionDecorator)
+          .getPhrases()
+          .getPhrase(0);
+        DialogsController.getDialog("text-dialog").handleDialogShow(npcPhrase);
+      }
+    );
+
+    await (await map1Npc3Interactable.init()).getSubject().init({
+      src: NPC_IMAGES.MAP_1_NPC_3_IMAGE,
+      numberOfFrames: 12,
+      framesOfInterest: [6, 11],
+    });
+
+    map1InteractableController.addInteractable(map1Npc3Interactable);
 
     const map1Computer1 = new ObjectOnMap({
       x:
