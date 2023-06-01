@@ -55,7 +55,7 @@ export class MapInteractableController {
 
     const map1Computer1Interactable = new InteractableDecorator(
       map1Computer1,
-      1817,
+      MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_COMPUTER_1_INTERACTION_TILE_ID,
       () => {
         DialogsController.getDialog("markup-dialog").handleDialogShow(
           project1Template
@@ -76,10 +76,9 @@ export class MapInteractableController {
         MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_COMPUTER_2_OFFSET_Y,
     });
 
-    // todo akicha 1: add interaction tile ids to enums
     const map1Computer2Interactable = new InteractableDecorator(
       map1Computer2,
-      1818,
+      MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_COMPUTER_2_INTERACTION_TILE_ID,
       () => {
         DialogsController.getDialog("markup-dialog").handleDialogShow(
           project2Template

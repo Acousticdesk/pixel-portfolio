@@ -3,7 +3,6 @@ import { Animatable } from "../animatable/interfaces";
 import { Drawable } from "../drawable/interfaces";
 import { Initable } from "../initable/interfaces";
 
-// todo akicha 1: see if there is a need in implementing the Animatable, Drawable and Initable interfaces
 export class ObjectOnMap
   implements Movable, Animatable, Drawable, Initable<string, Promise<void>>
 {
