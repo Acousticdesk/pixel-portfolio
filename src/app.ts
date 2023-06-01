@@ -75,7 +75,7 @@ export async function main() {
 
   MovablesController.registerCollection({
     getItems: () =>
-      MapInteractableController.selectNPCsOnCurrentMap().getNPCs(),
+      MapInteractableController.selectNPCsOnCurrentMap().addInteractables(),
   });
 
   MovablesController.registerCollection({

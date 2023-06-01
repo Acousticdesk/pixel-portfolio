@@ -14,7 +14,7 @@ export class PlayerInteractionAreaController {
       PlayerInteractionAreaCollisionController.findCollisionTile();
 
     MapInteractableController.selectNPCsOnCurrentMap()
-      .getNPCs()
+      .addInteractables()
       .filter(PlayerInteractionAreaController.isInteractableNPC)
       .forEach((npc) => npc.restrictToInteractWith());
 
@@ -62,7 +62,7 @@ export class PlayerInteractionAreaController {
     dialogAreaId: number
   ) {
     const companions = MapInteractableController.selectNPCsOnCurrentMap()
-      .getNPCs()
+      .addInteractables()
       .filter(PlayerInteractionAreaController.isInteractableNPC);
 
     return companions.find(

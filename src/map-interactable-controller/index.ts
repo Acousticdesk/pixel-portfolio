@@ -1,4 +1,4 @@
-import { NPCController } from "../npc-controller";
+import { InteractableController } from "../interactable-controller";
 import { NPC } from "../npc";
 import { NPC_IMAGES } from "../npc/consts";
 import { CompanionDecorator } from "../npc/decorators";
@@ -13,11 +13,11 @@ import { project1Template } from "../projects/templates/project-1";
 import { project2Template } from "../projects/templates/project-2";
 
 export class MapInteractableController {
-  static interactablesOnMap: Record<string, NPCController> = {};
+  static interactablesOnMap: Record<string, InteractableController> = {};
   static currentMap = "map-1";
 
   static async init() {
-    const map1NPCController = new NPCController();
+    const map1InteractableController = new InteractableController();
     const map1Npc1 = new NPC({
       x:
         Map.initialImageOffsetX +
@@ -42,7 +42,7 @@ export class MapInteractableController {
     );
     await map1Npc1Interactable.init(NPC_IMAGES.MAP_1_RECEPTIONIST_NPC_IMAGE);
 
-    map1NPCController.addNPC(map1Npc1Interactable);
+    map1InteractableController.addInteractable(map1Npc1Interactable);
 
     const map1Computer1 = new ObjectOnMap({
       x:
@@ -67,7 +67,7 @@ export class MapInteractableController {
 
     await map1Computer1Interactable.init("");
 
-    map1NPCController.addNPC(map1Computer1Interactable);
+    map1InteractableController.addInteractable(map1Computer1Interactable);
 
     // todo akicha 1: fix the issue with the tile position when the window is resized
     const map1Computer2 = new ObjectOnMap({
@@ -93,9 +93,10 @@ export class MapInteractableController {
 
     await map1Computer2Interactable.init("");
 
-    map1NPCController.addNPC(map1Computer2Interactable);
+    map1InteractableController.addInteractable(map1Computer2Interactable);
 
-    MapInteractableController.interactablesOnMap["map-1"] = map1NPCController;
+    MapInteractableController.interactablesOnMap["map-1"] =
+      map1InteractableController;
   }
 
   static selectNPCsOnCurrentMap() {
