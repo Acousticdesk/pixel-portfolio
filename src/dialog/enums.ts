@@ -1,4 +1,3 @@
-// todo akicha 1: Add text_ prefix ro the first four enum names
 export enum NPC_DIALOG_UI_CONTROLLER_ENUMS {
   DIALOG_UI_SELECTOR = "#text_dialog",
   BACKDROP_UI_SELECTOR = "#text_dialog_backdrop",
