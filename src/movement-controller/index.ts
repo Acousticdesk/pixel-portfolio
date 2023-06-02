@@ -15,10 +15,10 @@ export class MovementController {
         | PLAYER_ENUMS.MOVEMENT_DIRECTION_LEFT
         | PLAYER_ENUMS.MOVEMENT_DIRECTION_RIGHT;
     } = {
-      w: PLAYER_ENUMS.MOVEMENT_DIRECTION_UP,
-      s: PLAYER_ENUMS.MOVEMENT_DIRECTION_DOWN,
-      a: PLAYER_ENUMS.MOVEMENT_DIRECTION_LEFT,
-      d: PLAYER_ENUMS.MOVEMENT_DIRECTION_RIGHT,
+      KeyW: PLAYER_ENUMS.MOVEMENT_DIRECTION_UP,
+      KeyS: PLAYER_ENUMS.MOVEMENT_DIRECTION_DOWN,
+      KeyA: PLAYER_ENUMS.MOVEMENT_DIRECTION_LEFT,
+      KeyD: PLAYER_ENUMS.MOVEMENT_DIRECTION_RIGHT,
     };
 
     if (!Keyboard.lastPressed || !keyToDirectionMap[Keyboard.lastPressed]) {
@@ -35,7 +35,7 @@ export class MovementController {
     MovementController.updatePlayerDirection();
 
     if (
-      Keyboard.keys.w.pressed &&
+      Keyboard.keys.KeyW.pressed &&
       !PlayerBoundaryCollisionController.isCollisionDetected([0, -velocity])
     ) {
       Map.setImageOffsetY(Map.imageOffsetY + velocity);
@@ -45,7 +45,7 @@ export class MovementController {
       });
     }
     if (
-      Keyboard.keys.s.pressed &&
+      Keyboard.keys.KeyS.pressed &&
       !PlayerBoundaryCollisionController.isCollisionDetected([
         0,
         velocity as number,
@@ -58,7 +58,7 @@ export class MovementController {
       });
     }
     if (
-      Keyboard.keys.a.pressed &&
+      Keyboard.keys.KeyA.pressed &&
       !PlayerBoundaryCollisionController.isCollisionDetected([-velocity, 0])
     ) {
       Map.setImageOffsetX(Map.imageOffsetX + velocity);
@@ -68,7 +68,7 @@ export class MovementController {
       });
     }
     if (
-      Keyboard.keys.d.pressed &&
+      Keyboard.keys.KeyD.pressed &&
       !PlayerBoundaryCollisionController.isCollisionDetected([
         velocity as number,
         0,

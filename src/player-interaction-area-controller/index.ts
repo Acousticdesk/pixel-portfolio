@@ -28,7 +28,7 @@ export class PlayerInteractionAreaController {
   }
 
   static talk() {
-    if (!Keyboard.keys[" "].pressed) {
+    if (!Keyboard.keys["Space"].pressed) {
       return;
     }
 

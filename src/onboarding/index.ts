@@ -2,7 +2,7 @@ import { ONBOARDING_ENUMS } from "./enums";
 
 export class Onboarding {
   private static handleKeydown(e: KeyboardEvent) {
-    if (["w", "a", "s", "d"].includes(e.key)) {
+    if (["KeyW", "KeyA", "KeyS", "KeyD"].includes(e.code)) {
       const backdropElement = Onboarding.getBackdropElement();
       const onboardingElement = Onboarding.getOnboardingElement();
 

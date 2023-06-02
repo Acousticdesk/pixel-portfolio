@@ -1,25 +1,25 @@
 export class Keyboard {
   static keys: { [key: string]: { pressed: boolean } } = {
-    w: {
+    KeyW: {
       pressed: false,
     },
-    a: {
+    KeyA: {
       pressed: false,
     },
-    s: {
+    KeyS: {
       pressed: false,
     },
-    d: {
+    KeyD: {
       pressed: false,
     },
-    " ": {
+    Space: {
       pressed: false,
     },
   };
   static lastPressed: string | null = null;
   static handleKeyUp = function handleKeyUp(e: KeyboardEvent) {
-    if (Keyboard.keys[e.key]) {
-      Keyboard.keys[e.key].pressed = false;
+    if (Keyboard.keys[e.code]) {
+      Keyboard.keys[e.code].pressed = false;
     }
 
     for (let objKey in Keyboard.keys) {
@@ -33,10 +33,10 @@ export class Keyboard {
     Keyboard.lastPressed = null;
   };
   static handleKeyDown = function handleKeyDown(e: KeyboardEvent) {
-    if (Keyboard.keys[e.key]) {
-      Keyboard.keys[e.key].pressed = true;
+    if (Keyboard.keys[e.code]) {
+      Keyboard.keys[e.code].pressed = true;
     }
-    Keyboard.lastPressed = e.key;
+    Keyboard.lastPressed = e.code;
   };
   static init() {
     document.addEventListener("keyup", Keyboard.handleKeyUp);

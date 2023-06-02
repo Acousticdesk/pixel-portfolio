@@ -19,7 +19,7 @@ export class Dialog {
     this.implementation.init();
 
     document.body.addEventListener("keyup", (e) => {
-      if (["Escape", "Enter"].includes(e.key)) {
+      if (["Escape", "Enter"].includes(e.code)) {
         this.handleDialogHide();
       }
     });
