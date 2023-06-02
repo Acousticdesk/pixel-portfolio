@@ -18,10 +18,6 @@ import { DialogsController } from "./dialogs-controller";
 import { TextDialogImplementation } from "./dialog/implementations/text-dialog";
 import { MarkupDialogImplementation } from "./dialog/implementations/markup-dialog";
 
-// todo akicha: add npc with feedbacks about work
-// todo akicha: add interaction with bookshelf about the books read
-
-// todo akicha: fix an issue with closing the text dialog while animation is in the process
 function animate() {
   Canvas.resetCanvas();
   MovementController.move();
