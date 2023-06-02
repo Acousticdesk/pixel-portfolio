@@ -20,6 +20,8 @@ import { MarkupDialogImplementation } from "./dialog/implementations/markup-dial
 
 // todo akicha: add npc with feedbacks about work
 // todo akicha: add interaction with bookshelf about the books read
+
+// todo akicha: fix an issue with closing the text dialog while animation is in the process
 function animate() {
   Canvas.resetCanvas();
   MovementController.move();
