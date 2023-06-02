@@ -66,6 +66,7 @@
 
 .onboarding__button:hover, .onboarding__button:active  {
     background: #ffffff;
+    cursor: default;
 }
 
 .onboarding__hint {
