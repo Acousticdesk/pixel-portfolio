@@ -11,6 +11,7 @@ import { ObjectOnMap } from "../object-on-map";
 import { DialogsController } from "../dialogs-controller";
 import { project1Template } from "../projects/templates/project-1";
 import { project2Template } from "../projects/templates/project-2";
+import { bookshelfTemplate } from "../bookshelf/templates";
 
 export class MapInteractableController {
   static interactablesOnMap: Record<string, InteractableController> = {};
@@ -166,6 +167,31 @@ export class MapInteractableController {
       .init({ src: "", numberOfFrames: 1, framesOfInterest: [] });
 
     map1InteractableController.addInteractable(map1Computer2Interactable);
+
+    const map1Bookshelf1 = new ObjectOnMap({
+      x:
+        Map.initialImageOffsetX +
+        MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_BOOKSHELF_1_OFFSET_X,
+      y:
+        Map.initialImageOffsetY +
+        MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_BOOKSHELF_1_OFFSET_Y,
+    });
+
+    const map1Bookshelf1Interactable = new InteractableDecorator(
+      map1Bookshelf1,
+      MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_BOOKSHELF_1_INTERACTION_TILE_ID,
+      () => {
+        DialogsController.getDialog("markup-dialog").handleDialogShow(
+          bookshelfTemplate
+        );
+      }
+    );
+
+    await (await map1Bookshelf1Interactable.init())
+      .getSubject()
+      .init({ src: "", numberOfFrames: 1, framesOfInterest: [] });
+
+    map1InteractableController.addInteractable(map1Bookshelf1Interactable);
 
     MapInteractableController.interactablesOnMap["map-1"] =
       map1InteractableController;

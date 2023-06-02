@@ -10,6 +10,7 @@ let interactionAreasRaw: number[] = [];
   "Computer 2 Interaction Area",
   "NPC 2 Interaction Area",
   "NPC 3 Interaction Area",
+  "Bookshelf 1 Interaction Area",
 ].forEach((layerName) => {
   const { data }: { data: number[] } = firstMapJson.layers.find(
     ({ name }: { name: string }) => layerName === name
