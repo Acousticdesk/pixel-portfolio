@@ -32,7 +32,7 @@ export class MapInteractableController {
     );
     const map1Npc1Interactable = new InteractableDecorator(
       map1Npc1Companion,
-      181,
+      MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_NPC_1_INTERACTION_TILE_ID,
       (self) => {
         const npcPhrase = (self.getSubject() as CompanionDecorator)
           .getPhrases()
@@ -64,10 +64,10 @@ export class MapInteractableController {
       map1Npc2,
       new Phrases(dialogTexts["map-1"]["npc-2"])
     );
-    // todo akicha 1: add correct interaction tile ids
+
     const map1Npc2Interactable = new InteractableDecorator(
       map1Npc2Companion,
-      182,
+      MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_NPC_2_INTERACTION_TILE_ID,
       (self) => {
         const npcPhrase = (self.getSubject() as CompanionDecorator)
           .getPhrases()
@@ -99,7 +99,7 @@ export class MapInteractableController {
     );
     const map1Npc3Interactable = new InteractableDecorator(
       map1Npc3Companion,
-      1816,
+      MAP_INTERACTABLE_CONTROLLER_ENUMS.MAP_1_NPC_3_INTERACTION_TILE_ID,
       (self) => {
         const npcPhrase = (self.getSubject() as CompanionDecorator)
           .getPhrases()
