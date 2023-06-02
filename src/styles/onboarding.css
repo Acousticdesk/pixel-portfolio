@@ -13,7 +13,7 @@
 }
 
 .onboarding__backdrop {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.5);
     position: absolute;
     left: 0;
     right: 0;
@@ -31,13 +31,19 @@
     transition: opacity .3s ease-in-out;
 }
 
+.onboarding__container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
 .onboarding--fade-out {
     opacity: 0;
 }
 
-.onboarding__container {
+.onboarding__controls-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: flex-end;
 }
 
@@ -70,4 +76,20 @@
     .onboarding, .onboarding__backdrop {
         display: none;
     }
+}
+
+.onboarding__contacts {
+    margin: 0 0 32px;
+}
+
+.onboarding__contact-item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    margin: 8px 0;
+    text-align: right;
+}
+
+.onboarding__contact-item:hover {
+    color: blue;
 }
