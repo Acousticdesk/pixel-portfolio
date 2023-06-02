@@ -80,14 +80,14 @@
 
 .onboarding__contacts {
     margin: 0 0 32px;
+    text-align: right;
 }
 
 .onboarding__contact-item {
-    display: block;
+    display: inline-block;
     text-decoration: none;
     color: inherit;
-    margin: 8px 0;
-    text-align: right;
+    padding: 8px 0;
 }
 
 .onboarding__contact-item:hover {
