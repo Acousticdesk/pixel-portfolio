@@ -1,4 +1,3 @@
-// the interaction-area layer exported from Tiled as is
 import { MAP_ENUMS } from "./map/enums";
 const firstMapJson = require("./assets/map/first-office.json");
 

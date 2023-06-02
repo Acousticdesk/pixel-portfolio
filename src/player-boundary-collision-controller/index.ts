@@ -1,7 +1,6 @@
 import { Player } from "../player";
 import { BoundaryController } from "../boundary-controller";
 import { Boundary } from "../boundary";
-import { MAP_ENUMS } from "../map/enums";
 import { Collision } from "../collision";
 import { Map } from "../map";
 

@@ -5,7 +5,7 @@ import microservices from "../assets/images/microservices.jpg";
 import patterns from "../assets/images/patterns.jpg";
 
 export const bookshelfTemplate = `
-  <h3 class="bookshelf__head">Andrii's books recommendations</h3>
+  <h3 class="bookshelf__head">Andrii's books recommendation</h3>
   <p>There are lots of sources of information that you can use to become a great software engineer nowadays, but sometimes I enjoy reading a well-written book that delves into the topic.</p>
   <p>If you are somewhat like me probably you might find this list useful :)</p>
   <div class="bookshelf__container">
