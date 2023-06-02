@@ -42,7 +42,6 @@ export class MapInteractableController {
       }
     );
 
-    // todo akicha 1: to enums
     await (await map1Npc1Interactable.init()).getSubject().init({
       src: NPC_IMAGES.MAP_1_NPC_1_IMAGE,
       numberOfFrames: 24,
@@ -136,7 +135,7 @@ export class MapInteractableController {
       }
     );
 
-    // todo akicha 1: makes no sense to pass the sprite parameters for the interactable without sprite
+    // todo akicha: makes no sense to pass the sprite parameters for the interactable without sprite
     await (await map1Computer1Interactable.init())
       .getSubject()
       .init({ src: "", numberOfFrames: 1, framesOfInterest: [] });

@@ -68,7 +68,6 @@ export class TextDialogImplementation implements DialogImplementation<string> {
     this.embedContent(content);
   }
 
-  // todo akicha: to the abstraction class
   private showBackdrop() {
     const element = this.getBackdropElement();
     element.hidden = false;

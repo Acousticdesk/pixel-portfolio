@@ -45,7 +45,6 @@ export class InteractableDecorator
   }
   async init() {
     this.interactionIcon = new Image();
-    // todo akicha: make icon configurable
     this.interactionIcon.src = dialogCloudImageBase64;
     await new Promise((resolve, reject) => {
       this.interactionIcon.onload = resolve;

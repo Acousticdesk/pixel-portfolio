@@ -40,7 +40,6 @@ export class NPC
     this.animationThrottleMs = animationThrottleMs;
   }
 
-  // todo akicha 1: create a sprite separately from the initializer
   async init(
     { src, numberOfFrames, framesOfInterest } = {
       src: "",
