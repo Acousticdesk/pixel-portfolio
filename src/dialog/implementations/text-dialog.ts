@@ -2,7 +2,7 @@ import { DIALOG_ENUMS } from "../enums";
 import { DialogImplementation } from "../interfaces";
 
 export class TextDialogImplementation implements DialogImplementation<string> {
-  private isAnimationInProgress = false;
+  private animationIntervalId: number = 0;
 
   private getDialogElement() {
     const element = document.querySelector<HTMLDivElement>(
@@ -68,7 +68,6 @@ export class TextDialogImplementation implements DialogImplementation<string> {
     this.embedContent(content);
   }
 
-  // todo akicha: to the abstraction class
   private showBackdrop() {
     const element = this.getBackdropElement();
     element.hidden = false;
@@ -88,30 +87,33 @@ export class TextDialogImplementation implements DialogImplementation<string> {
     const element = this.getBackdropElement();
     element.classList.remove("visible");
 
+    if (this.animationIntervalId) {
+      window.clearInterval(this.animationIntervalId);
+      this.animationIntervalId = 0;
+    }
+
     window.setTimeout(() => {
       element.hidden = true;
     }, 200);
   }
 
   private embedContent(text: string) {
-    if (this.isAnimationInProgress) {
+    if (this.animationIntervalId) {
       return;
     }
-
-    this.isAnimationInProgress = true;
 
     const element = this.getContentElement();
     element.textContent = "";
 
     let charIndex = 0;
 
-    const intervalId = window.setInterval(() => {
+    this.animationIntervalId = window.setInterval(() => {
       if (charIndex < text.length) {
         element.textContent = element.textContent + text[charIndex];
         charIndex += 1;
       } else {
-        window.clearInterval(intervalId);
-        this.isAnimationInProgress = false;
+        window.clearInterval(this.animationIntervalId);
+        this.animationIntervalId = 0;
       }
     }, DIALOG_ENUMS.TEXT_ANIMATION_THROTTLE_RATE_MS);
   }

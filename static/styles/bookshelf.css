@@ -1,0 +1,15 @@
+.bookshelf__image {
+    width: 320px;
+}
+
+.bookshelf__heading {
+    margin: 96px 0 16px 0;
+}
+
+.bookshelf__head {
+    margin: 32px 0 32px 0;
+}
+
+.bookshelf__container {
+    text-align: center;
+}

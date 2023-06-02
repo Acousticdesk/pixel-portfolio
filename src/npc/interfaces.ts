@@ -1,5 +1,9 @@
 export interface NPC {
-  init: (image: string) => Promise<void>;
+  init: (parameters: {
+    src: string;
+    numberOfFrames: number;
+    framesOfInterest: number[];
+  }) => Promise<void>;
   updateAnimationSpriteFrame: () => void;
   draw: () => void;
 }

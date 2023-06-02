@@ -21,3 +21,7 @@
         display: flex;
     }
 }
+
+.desktop-only__contacts {
+    margin: 64px 0 0 0;
+}
