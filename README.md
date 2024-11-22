@@ -2,6 +2,9 @@
 
 ![Andrii Kycha Portfolio Inspired by 1990s Video Games](./docs/assets/img/preview.png)
 
+Created thanks to this YT guide:
+https://www.youtube.com/watch?v=yP5DKzriqXA&t=17694s&ab_channel=ChrisCourses
+
 ## Running Locally
 
 - Clone the repo
