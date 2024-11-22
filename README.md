@@ -16,3 +16,10 @@
 - Open `static/index.html` in your browser
 - Add your changes to the codebase
 - Reload the browser page to apply the changes
+
+## Changing the Map
+
+- Install the [Tiled map editor](https://www.mapeditor.org/)
+- Open the app
+- Open the Tiled project at `src/assets/tilesets/First Office.tmx`
+- Add the changes
